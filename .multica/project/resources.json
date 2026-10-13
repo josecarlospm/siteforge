@@ -1,0 +1,6 @@
+{
+  "project_id": "865c416d-8d5d-4ddd-a4ef-62dfb539efd9",
+  "project_title": "Structured-web-factory",
+  "project_description": "I would like to define a project on Multica that taking information from a JSON payload, It creates a website and publish It on vercel. This is the most ambitious project I ever created.\n\nI would like to use Angular as technology, make sure you create a specialized team for It and It is skilled with Angular MCP\n\nThe input parameters should be defined by the backend team that you also need to create, they should operate think about three main elements:\n\n- Type of website (Learning platform, blog, newsletter, ecommerce, social media, etc)\n- Design. With predefined Design.md options to have consistent results\n- Theme. Which is the content about? For instance, It is a elearning portal for home plants care? (We can use that one as landing product example)\n\nWe Will also need a comercial name for the web Factory and allow users to actually Connect the Factory with Github and vercel to generate the site. The list of design themes should be also show in a list (which should be mapped with the API parameters)\n\nMake sure a strong technical group of agents its behind this, including a CTO profile that Will decide the dirección for me (owner) on an hourly basis per Multica Autopilot feature.",
+  "resources": []
+}

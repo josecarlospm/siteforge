@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SiteForge Angular CLI MCP Server Configuration",
+  "mcpServers": {
+    "angular-cli": {
+      "command": "npx",
+      "args": ["-y", "@angular/cli", "mcp"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "capabilities": [
+        "search_documentation",
+        "get_best_practices",
+        "list_projects",
+        "onpush_zoneless_migration",
+        "run_target",
+        "devserver_start",
+        "devserver_stop",
+        "devserver_wait_for_build"
+      ],
+      "description": "Official Angular CLI Model Context Protocol server providing live documentation, best practices, and workspace execution"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "siteType": "learning_platform",
+  "designPreset": "warm-organic",
+  "theme": {
+    "topic": "Indoor Houseplant Care",
+    "name": "PlantCare Academy",
+    "tagline": "Keep Your Indoor Jungle Thriving with Science-Backed Care",
+    "description": "Interactive masterclasses, watering diagnostics, lighting calculators, and pest emergency guides taught by botanical experts.",
+    "branding": {
+      "primaryColor": "#2D5A27",
+      "secondaryColor": "#8FBC8F",
+      "fontHeading": "Fraunces",
+      "fontBody": "Plus Jakarta Sans"
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "plantcare-academy-web",
+      "owner": "jos3k4",
+      "isPrivate": false
+    },
+    "vercel": {
+      "projectName": "plantcare-academy"
+    }
+  }
+}

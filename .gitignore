@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.angular/
+.tmp-test-output/
+generated/
+.DS_Store
+*.log

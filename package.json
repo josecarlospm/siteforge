@@ -1,0 +1,34 @@
+{
+  "name": "siteforge",
+  "version": "1.0.0",
+  "description": "SiteForge — The Autonomous Angular Web Factory",
+  "private": true,
+  "workspaces": [
+    "starter-workspace",
+    "scaffolding-engine",
+    "mcp-harness"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=scaffolding-engine && npm run build --workspace=mcp-harness && npm run build --workspace=starter-workspace",
+    "build:all": "npm run build",
+    "test": "npm run test --workspace=scaffolding-engine && npm run test --workspace=mcp-harness && npm run test --workspace=starter-workspace",
+    "test:all": "npm run test",
+    "test:starter": "npm run test --workspace=starter-workspace",
+    "test:engine": "npm run test --workspace=scaffolding-engine",
+    "test:mcp": "npm run test --workspace=mcp-harness",
+    "scaffold": "node scaffolding-engine/bin/siteforge-scaffold.js",
+    "mcp:tools": "node mcp-harness/bin/runner.js tools",
+    "mcp:docs": "node mcp-harness/bin/runner.js docs",
+    "mcp:standards": "node mcp-harness/bin/runner.js standards"
+  },
+  "keywords": [
+    "siteforge",
+    "angular",
+    "web-factory",
+    "mcp",
+    "zoneless",
+    "signals"
+  ],
+  "author": "SiteForge Angular Lead",
+  "license": "MIT"
+}

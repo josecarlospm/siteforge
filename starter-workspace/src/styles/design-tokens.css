@@ -1,0 +1,206 @@
+/* SiteForge Design.md Compiled Token Presets */
+
+:root {
+  /* Default Spatial Tokens */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --container-max-w: 1200px;
+
+  /* Typography Scales */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* Transition Timing */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. Warm Organic Preset (Flagship - Plants & Wellness) */
+:root,
+:root[data-theme="warm-organic"] {
+  --color-bg: #F7F5F0;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #EFECE6;
+  --color-text-main: #1E281E;
+  --color-text-muted: #556B55;
+  --color-primary: #2D5A27;
+  --color-primary-hover: #22451E;
+  --color-secondary: #8FBC8F;
+  --color-secondary-hover: #7DAA7D;
+  --color-accent: #C86D51;
+  --color-accent-hover: #B55C41;
+  --color-border: #E5E0D8;
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --border-width: 1px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  --radius-card: 16px;
+  --radius-btn: 9999px;
+
+  --shadow-flat: none;
+  --shadow-card: 0 10px 30px -10px rgba(45, 90, 39, 0.08);
+  --shadow-ambient: 0 4px 20px rgba(45, 90, 39, 0.04);
+  --shadow-button: 0 4px 14px rgba(45, 90, 39, 0.18);
+  --backdrop-blur: 0px;
+}
+
+/* 2. Neo-Brutalist Preset */
+:root[data-theme="neo-brutalist"] {
+  --color-bg: #FFFDF8;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #FFF0A8;
+  --color-text-main: #000000;
+  --color-text-muted: #333333;
+  --color-primary: #FFE600;
+  --color-primary-hover: #FFD000;
+  --color-secondary: #6C5CE7;
+  --color-secondary-hover: #5844D8;
+  --color-accent: #FF5C00;
+  --color-accent-hover: #E05200;
+  --color-border: #000000;
+
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --border-width: 3px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-pill: 0px;
+  --radius-card: 0px;
+  --radius-btn: 0px;
+
+  --shadow-flat: none;
+  --shadow-card: 4px 4px 0px #000000;
+  --shadow-ambient: 6px 6px 0px #000000;
+  --shadow-button: 3px 3px 0px #000000;
+  --backdrop-blur: 0px;
+}
+
+/* 3. Clean Editorial Preset */
+:root[data-theme="clean-editorial"] {
+  --color-bg: #FAF8F5;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F3EFEA;
+  --color-text-main: #1C1917;
+  --color-text-muted: #57534E;
+  --color-primary: #7F1D1D;
+  --color-primary-hover: #601414;
+  --color-secondary: #B45309;
+  --color-secondary-hover: #92400E;
+  --color-accent: #14532D;
+  --color-accent-hover: #0F3E22;
+  --color-border: #E7E5E4;
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --border-width: 1px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 9999px;
+  --radius-card: 6px;
+  --radius-btn: 4px;
+
+  --shadow-flat: none;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --shadow-ambient: 0 2px 10px rgba(0, 0, 0, 0.02);
+  --shadow-button: 0 2px 6px rgba(127, 29, 29, 0.12);
+  --backdrop-blur: 0px;
+}
+
+/* 4. Modern SaaS Dark Preset */
+:root[data-theme="modern-saas-dark"] {
+  --color-bg: #09090B;
+  --color-surface: #18181B;
+  --color-surface-muted: #27272A;
+  --color-text-main: #FAFAFA;
+  --color-text-muted: #A1A1AA;
+  --color-primary: #6366F1;
+  --color-primary-hover: #4F46E5;
+  --color-secondary: #8B5CF6;
+  --color-secondary-hover: #7C3AED;
+  --color-accent: #06B6D4;
+  --color-accent-hover: #0891B2;
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --border-width: 1px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+
+  --shadow-flat: none;
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --shadow-ambient: 0 4px 24px rgba(99, 102, 241, 0.12);
+  --shadow-button: 0 4px 16px rgba(99, 102, 241, 0.35);
+  --backdrop-blur: 12px;
+}
+
+/* 5. Corporate Enterprise Preset */
+:root[data-theme="corporate-enterprise"] {
+  --color-bg: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-surface-muted: #F1F5F9;
+  --color-text-main: #0F172A;
+  --color-text-muted: #475569;
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-secondary: #64748B;
+  --color-secondary-hover: #475569;
+  --color-accent: #0284C7;
+  --color-accent-hover: #0369A1;
+  --color-border: #E2E8F0;
+
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --border-width: 1px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+  --radius-card: 8px;
+  --radius-btn: 6px;
+
+  --shadow-flat: none;
+  --shadow-card: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-ambient: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-button: 0 2px 4px rgba(37, 99, 235, 0.2);
+  --backdrop-blur: 0px;
+}

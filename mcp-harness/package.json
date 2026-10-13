@@ -1,0 +1,32 @@
+{
+  "name": "@siteforge/mcp-harness",
+  "version": "1.0.0",
+  "description": "Angular CLI Model Context Protocol (MCP) Harness & Agent Runtime Client",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "angular-mcp-harness": "bin/runner.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "query:docs": "node bin/runner.js docs",
+    "query:standards": "node bin/runner.js standards",
+    "query:projects": "node bin/runner.js projects"
+  },
+  "keywords": [
+    "angular",
+    "mcp",
+    "model-context-protocol",
+    "siteforge",
+    "ai-agent"
+  ],
+  "author": "SiteForge Angular Lead",
+  "license": "MIT",
+  "devDependencies": {
+    "@angular/cli": "^22.2.2",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

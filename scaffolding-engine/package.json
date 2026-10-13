@@ -1,0 +1,29 @@
+{
+  "name": "@siteforge/scaffolding-engine",
+  "version": "1.0.0",
+  "description": "Autonomous Angular 19+ Scaffolding Engine driven by structured JSON payloads and Design.md tokens",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "siteforge-scaffold": "bin/siteforge-scaffold.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "scaffold": "node bin/siteforge-scaffold.js"
+  },
+  "keywords": [
+    "siteforge",
+    "angular",
+    "scaffolding",
+    "design-tokens",
+    "mcp"
+  ],
+  "author": "SiteForge Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
