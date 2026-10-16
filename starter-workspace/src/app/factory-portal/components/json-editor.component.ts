@@ -1,36 +1,34 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FactoryStateService } from '../services/factory-state.service';
 
 @Component({
   selector: 'sf-json-editor',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   template: `
-    <section class="json-section">
+    <section class="json-section" aria-labelledby="json-heading">
       <div class="editor-header">
         <div class="title-wrap">
-          <h3 class="section-title">Raw JSON Payload Contract</h3>
-          <span class="section-subtitle">Real-time two-way synchronization with canonical &#64;siteforge/payload-schema</span>
+          <h2 class="section-title" id="json-heading">Raw JSON payload</h2>
+          <p class="section-subtitle">Two-way sync with the canonical SiteForge payload contract</p>
         </div>
 
         <div class="btn-group">
           @if (copied()) {
-            <span class="copied-indicator">✓ Copied</span>
+            <span class="copied-indicator">Copied</span>
           }
-          <button class="sf-btn sf-btn-secondary btn-sm" (click)="copyJson()">
-            📋 Copy JSON
+          <button type="button" class="sf-btn sf-btn-secondary btn-sm" (click)="copyJson()">
+            Copy JSON
           </button>
-          <button class="sf-btn sf-btn-secondary btn-sm" (click)="formatJson()">
-            ✨ Format
+          <button type="button" class="sf-btn sf-btn-secondary btn-sm" (click)="formatJson()">
+            Format
           </button>
         </div>
       </div>
 
       @if (error(); as err) {
-        <div class="error-banner">
-          ⚠️ JSON Syntax Error: {{ err }}
+        <div class="error-banner" role="alert">
+          JSON syntax error: {{ err }}
         </div>
       }
 
@@ -41,23 +39,23 @@ import { FactoryStateService } from '../services/factory-state.service';
           [ngModel]="jsonString()"
           (ngModelChange)="onJsonChange($event)"
           spellcheck="false"
+          aria-label="JSON payload editor"
         ></textarea>
       </div>
     </section>
   `,
   styles: [`
-    .json-section {
-      margin-bottom: var(--spacing-8, 32px);
-    }
     .editor-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: var(--spacing-3, 12px);
     }
     .section-title {
-      font-size: var(--text-lg, 1.125rem);
-      font-weight: 700;
+      font-size: var(--text-xl, 1.25rem);
+      font-weight: 600;
       color: var(--color-text-main);
     }
     .section-subtitle {
@@ -75,17 +73,17 @@ import { FactoryStateService } from '../services/factory-state.service';
     }
     .copied-indicator {
       font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--color-primary);
+      font-weight: 650;
+      color: var(--color-accent);
     }
     .error-banner {
-      background: #FFF1F0;
-      border: 1px solid #FFA39E;
-      color: #CF1322;
+      background: rgba(179, 58, 58, 0.15);
+      border: 1px solid rgba(179, 58, 58, 0.45);
+      color: #F5B5B5;
       padding: 8px 12px;
       border-radius: var(--radius-btn);
       font-size: 0.8rem;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       margin-bottom: 8px;
     }
     .textarea-container {
@@ -96,10 +94,10 @@ import { FactoryStateService } from '../services/factory-state.service';
     }
     .json-textarea {
       width: 100%;
-      background: #0D1117;
-      color: #E6EDF3;
+      background: #0A0D12;
+      color: #E8E6E1;
       padding: 16px;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.8rem;
       line-height: 1.5;
       border: none;
@@ -113,10 +111,12 @@ export class JsonEditorComponent {
 
   readonly jsonString = this.state.rawJsonString;
   readonly error = this.state.jsonError;
-  readonly copied = inject(FactoryStateService).siteType; // state tracker
+  readonly copied = signal(false);
 
   copyJson(): void {
     navigator.clipboard?.writeText(this.jsonString());
+    this.copied.set(true);
+    setTimeout(() => this.copied.set(false), 1500);
   }
 
   formatJson(): void {

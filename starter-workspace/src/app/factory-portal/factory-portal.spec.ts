@@ -4,6 +4,7 @@ import { FactoryPortalComponent } from './factory-portal.component';
 import { FactoryStateService } from './services/factory-state.service';
 import { ThemeService } from '../core/services/theme.service';
 import { ARCHETYPES } from './models/factory.model';
+import { DESIGN_PRESETS } from '../core/models/design-tokens.model';
 
 describe('SiteForge Self-Serve Web Factory Portal', () => {
   let stateService: FactoryStateService;
@@ -21,6 +22,8 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
 
     stateService = TestBed.inject(FactoryStateService);
     themeService = TestBed.inject(ThemeService);
+    // SF-11: portal chrome is Forge Night; payload preset stays independent
+    themeService.setPreset('modern-saas-dark');
   });
 
   it('should initialize factory state with default learning_platform and warm-organic preset', () => {
@@ -47,13 +50,17 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
     }
   });
 
-  it('should support dynamic preset switching and color updates', () => {
+  it('should update payload preset without leaving Forge Night portal shell', () => {
+    expect(themeService.currentPreset()).toBe('modern-saas-dark');
+
     stateService.setPreset('neo-brutalist');
     expect(stateService.designPreset()).toBe('neo-brutalist');
-    expect(themeService.currentPreset()).toBe('neo-brutalist');
+    expect(stateService.primaryColor()).toBe(DESIGN_PRESETS['neo-brutalist'].colors.primary);
+    expect(themeService.currentPreset()).toBe('modern-saas-dark');
 
     stateService.setPreset('modern-saas-dark');
     expect(stateService.designPreset()).toBe('modern-saas-dark');
+    expect(stateService.primaryColor()).toBe(DESIGN_PRESETS['modern-saas-dark'].colors.primary);
     expect(themeService.currentPreset()).toBe('modern-saas-dark');
   });
 
@@ -61,7 +68,6 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
     stateService.updateField('siteName', 'Quantum CMS');
     expect(stateService.rawJsonString()).toContain('Quantum CMS');
 
-    // Update via raw JSON
     const updatedJson = JSON.stringify({
       version: '1.0.0',
       siteType: 'blog',
@@ -101,25 +107,32 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
     expect(result).not.toBeNull();
     expect(result?.vercelUrl).toContain('.vercel.app');
     expect(result?.githubUrl).toContain('github.com/josecarlospm/');
-    expect(result?.durationMs).toBeLessThan(180000); // Well under 3 minutes SLA
+    expect(result?.durationMs).toBeLessThan(180000);
 
-    // Verify all 5 stages reached completed
     for (const stage of stateService.stages()) {
       expect(stage.status).toBe('completed');
     }
   });
 
-  it('should render FactoryPortalComponent layout cleanly', () => {
+  it('should render brand-led hero without anti-slop chrome', () => {
     const fixture = TestBed.createComponent(FactoryPortalComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelector('.portal-hero')).toBeTruthy();
+    expect(compiled.querySelector('.hero-brand')).toBeTruthy();
+    expect(compiled.querySelector('.hero-stats')).toBeNull();
+    expect(compiled.querySelector('.stat-pill')).toBeNull();
     expect(compiled.querySelector('sf-archetype-selector')).toBeTruthy();
     expect(compiled.querySelector('sf-preset-selector')).toBeTruthy();
     expect(compiled.querySelector('sf-theme-editor')).toBeTruthy();
     expect(compiled.querySelector('sf-connection-cards')).toBeTruthy();
     expect(compiled.querySelector('sf-pipeline-runner')).toBeTruthy();
     expect(compiled.textContent).toContain('SiteForge');
+
+    const brand = compiled.querySelector('.hero-brand');
+    expect(brand?.textContent?.trim()).toBe('SiteForge');
+    expect(compiled.querySelectorAll('.preset-preview').length).toBe(5);
+    expect(compiled.textContent).toContain('designPreset');
   });
 });

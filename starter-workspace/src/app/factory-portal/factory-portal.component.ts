@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FactoryStateService } from './services/factory-state.service';
 import { ArchetypeSelectorComponent } from './components/archetype-selector.component';
 import { PresetSelectorComponent } from './components/preset-selector.component';
@@ -10,9 +9,7 @@ import { PipelineRunnerComponent } from './components/pipeline-runner.component'
 
 @Component({
   selector: 'sf-factory-portal',
-  standalone: true,
   imports: [
-    CommonModule,
     ArchetypeSelectorComponent,
     PresetSelectorComponent,
     ThemeEditorComponent,
@@ -22,190 +19,193 @@ import { PipelineRunnerComponent } from './components/pipeline-runner.component'
   ],
   template: `
     <div class="factory-portal">
-      <!-- Portal Hero Banner -->
-      <section class="portal-hero">
-        <div class="hero-content">
-          <div class="brand-eyebrow">
-            <span class="sf-badge sf-badge-primary">⚡ Stage 3: Factory Portal</span>
-            <span class="eyebrow-text">Autonomous Angular Web Factory</span>
-          </div>
-
-          <h1 class="hero-title">
-            SiteForge
-            <span class="highlight">Autonomous Web Factory</span>
-          </h1>
-
-          <p class="hero-desc">
-            Transform structured JSON payloads into modern, production-deployed Angular 19+ web applications
-            published directly to GitHub and Vercel in under 3 minutes.
-          </p>
-
-          <div class="hero-stats">
-            <div class="stat-pill">
-              <span class="stat-val">6</span>
-              <span class="stat-lbl">Archetypes</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-val">5</span>
-              <span class="stat-lbl">Design.md Presets</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-val">&lt; 3m</span>
-              <span class="stat-lbl">Deployment SLA</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-val">100%</span>
-              <span class="stat-lbl">Zoneless Angular 19+</span>
-            </div>
-          </div>
+      <section class="portal-hero" aria-labelledby="sf-hero-brand">
+        <div class="hero-plane" aria-hidden="true">
+          <div class="forge-grid"></div>
+          <div class="forge-ember"></div>
+          <div class="forge-beam"></div>
         </div>
 
-        <div class="mode-switch-card">
-          <span class="mode-label">Editing Mode</span>
-          <div class="switch-buttons">
+        <div class="hero-content">
+          <p class="hero-brand" id="sf-hero-brand">SiteForge</p>
+          <h1 class="hero-title">Build production Angular sites from a payload.</h1>
+          <p class="hero-desc">
+            Choose archetype, Design.md preset, and theme — then ship to GitHub and Vercel.
+          </p>
+          <div class="hero-cta">
             <button
-              class="sf-btn"
-              [class.sf-btn-primary]="!isJsonMode()"
-              [class.sf-btn-secondary]="isJsonMode()"
+              type="button"
+              class="sf-btn sf-btn-primary"
+              [class.active]="!isJsonMode()"
               (click)="setMode(false)"
             >
-              🎨 Visual Builder
+              Visual builder
             </button>
             <button
-              class="sf-btn"
-              [class.sf-btn-primary]="isJsonMode()"
-              [class.sf-btn-secondary]="!isJsonMode()"
+              type="button"
+              class="sf-btn sf-btn-secondary"
+              [class.active]="isJsonMode()"
               (click)="setMode(true)"
             >
-              &#123; &#125; Raw JSON Editor
+              Raw JSON
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Main Studio Body -->
       <main class="studio-body">
         @if (!isJsonMode()) {
-          <!-- 1. Archetype Selector -->
           <sf-archetype-selector />
-
-          <!-- 2. Preset Selector -->
           <sf-preset-selector />
-
-          <!-- 3. Theme & Content Editor -->
           <sf-theme-editor />
-
-          <!-- 4. Cloud Integrations -->
           <sf-connection-cards />
         } @else {
-          <!-- Raw JSON Editor Mode -->
           <sf-json-editor />
         }
 
-        <!-- 5. Autonomous Factory Orchestration Runner -->
         <sf-pipeline-runner />
       </main>
     </div>
   `,
   styles: [`
     .factory-portal {
-      max-width: var(--container-max-w, 1280px);
+      max-width: var(--container-max-w, 1200px);
       margin: 0 auto;
-      padding: var(--spacing-6, 24px);
+      padding: 0 var(--spacing-6, 24px) var(--spacing-16, 64px);
     }
+
     .portal-hero {
-      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-muted) 100%);
-      border: var(--border-width) solid var(--color-border);
-      border-radius: var(--radius-card);
-      padding: var(--spacing-8, 32px);
-      margin-bottom: var(--spacing-8, 32px);
+      position: relative;
+      min-height: min(72vh, 640px);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--spacing-6, 24px);
-      box-shadow: var(--shadow-card);
+      align-items: flex-end;
+      margin: 0 calc(-1 * var(--spacing-6, 24px)) var(--spacing-12, 48px);
+      padding: var(--spacing-12, 48px) var(--spacing-6, 24px) var(--spacing-10, 40px);
+      overflow: hidden;
+      isolation: isolate;
     }
+
+    .hero-plane {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 20%, rgba(224, 122, 61, 0.22), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 15% 80%, rgba(201, 162, 39, 0.12), transparent 50%),
+        linear-gradient(160deg, #0A0D12 0%, #121820 45%, #0E1116 100%);
+    }
+
+    .forge-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 85%);
+      animation: grid-drift 28s linear infinite;
+    }
+
+    .forge-ember {
+      position: absolute;
+      right: -8%;
+      top: 10%;
+      width: min(52vw, 520px);
+      height: min(52vw, 520px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(224, 122, 61, 0.35) 0%, transparent 68%);
+      filter: blur(8px);
+      animation: ember-pulse 6s ease-in-out infinite;
+    }
+
+    .forge-beam {
+      position: absolute;
+      left: 8%;
+      bottom: 18%;
+      width: 42%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.7), transparent);
+      animation: beam-sweep 4.5s ease-in-out infinite;
+    }
+
     .hero-content {
-      max-width: 680px;
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
     }
-    .brand-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: var(--spacing-3, 12px);
-    }
-    .eyebrow-text {
-      font-size: var(--text-xs, 0.75rem);
+
+    .hero-brand {
+      font-family: var(--font-heading);
+      font-size: clamp(2.75rem, 8vw, 4.5rem);
       font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-    }
-    .hero-title {
-      font-size: 2.25rem;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: var(--spacing-3, 12px);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
       color: var(--color-text-main);
+      margin-bottom: var(--spacing-5, 20px);
+      animation: brand-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .highlight {
-      display: block;
-      color: var(--color-primary);
+
+    .hero-title {
+      font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--color-text-main);
+      margin-bottom: var(--spacing-3, 12px);
+      animation: brand-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
     }
+
     .hero-desc {
       font-size: var(--text-base, 1rem);
       color: var(--color-text-muted);
-      line-height: 1.5;
+      line-height: 1.55;
+      max-width: 36rem;
       margin-bottom: var(--spacing-6, 24px);
+      animation: brand-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
     }
-    .hero-stats {
+
+    .hero-cta {
       display: flex;
-      gap: var(--spacing-4, 16px);
       flex-wrap: wrap;
+      gap: var(--spacing-3, 12px);
+      animation: brand-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
     }
-    .stat-pill {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-btn);
-      padding: 8px 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+    .hero-cta .sf-btn.active {
+      outline: 1px solid var(--color-accent);
+      outline-offset: 2px;
     }
-    .stat-val {
-      font-size: 1.125rem;
-      font-weight: 800;
-      color: var(--color-primary);
-    }
-    .stat-lbl {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--color-text-muted);
-    }
-    .mode-switch-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-card);
-      padding: var(--spacing-4, 16px);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .mode-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-    }
-    .switch-buttons {
-      display: flex;
-      gap: 6px;
-    }
+
     .studio-body {
       display: flex;
       flex-direction: column;
+      gap: var(--spacing-10, 40px);
+    }
+
+    @keyframes brand-rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ember-pulse {
+      0%, 100% { opacity: 0.75; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    @keyframes beam-sweep {
+      0%, 100% { opacity: 0.35; transform: translateX(0); }
+      50% { opacity: 0.9; transform: translateX(12%); }
+    }
+
+    @keyframes grid-drift {
+      from { background-position: 0 0; }
+      to { background-position: 48px 48px; }
+    }
+
+    @media (max-width: 720px) {
+      .portal-hero {
+        min-height: 70vh;
+        align-items: flex-end;
+      }
     }
   `],
 })
