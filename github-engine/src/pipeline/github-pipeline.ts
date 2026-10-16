@@ -25,13 +25,13 @@ export class GitHubPipeline {
     // 1. Validation boundary via @siteforge/payload-schema
     const validation = validatePayload(payload);
     if (!validation.success) {
-      const errorMsg = validation.errors
-        ? validation.errors.map((e) => `${e.path}: ${e.message}`).join(', ')
-        : validation.error?.message || 'Invalid payload';
+      const errorMsg = (validation as any).errors
+        ? (validation as any).errors.map((e: any) => `${e.path}: ${e.message}`).join(', ')
+        : 'Invalid payload';
       throw new Error(`Payload validation failed: ${errorMsg}`);
     }
 
-    const validPayload = validation.data as AnySiteForgePayload;
+    const validPayload = validation.data as any;
     const siteType = validPayload.siteType;
     const designPreset = validPayload.designPreset;
     const repoName =

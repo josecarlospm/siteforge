@@ -1,1 +1,61 @@
-<sf-plantcare-showcase />
+<div class="sf-studio-app">
+  <!-- Top Navigation Header -->
+  <header class="sf-studio-nav">
+    <div class="sf-container nav-inner">
+      <div class="nav-brand" (click)="setTab('portal')">
+        <span class="brand-logo">⚡</span>
+        <div class="brand-text">
+          <span class="brand-name">SiteForge</span>
+          <span class="brand-tag">Autonomous Web Factory</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <button
+          type="button"
+          class="nav-tab-btn"
+          [class.active]="activeTab() === 'portal'"
+          (click)="setTab('portal')"
+        >
+          🛠️ Factory Studio
+        </button>
+        <button
+          type="button"
+          class="nav-tab-btn"
+          [class.active]="activeTab() === 'showcase'"
+          (click)="setTab('showcase')"
+        >
+          🌱 PlantCare Academy (Reference Site)
+        </button>
+        <button
+          type="button"
+          class="nav-tab-btn"
+          [class.active]="activeTab() === 'telemetry'"
+          (click)="setTab('telemetry')"
+        >
+          📊 CTO Diagnostics
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="sf-badge sf-badge-primary">Angular 19+ Zoneless</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Views -->
+  @if (activeTab() === 'portal') {
+    <sf-factory-portal />
+  }
+
+  @if (activeTab() === 'telemetry') {
+    <div class="sf-container telemetry-container">
+      <sf-cto-telemetry />
+    </div>
+  }
+
+  <!-- PlantCare Reference Site Showcase (preserved for test & live reference) -->
+  <div [style.display]="activeTab() === 'showcase' ? 'block' : 'none'">
+    <sf-plantcare-showcase />
+  </div>
+</div>

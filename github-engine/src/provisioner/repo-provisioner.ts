@@ -24,7 +24,7 @@ export class RepoProvisioner {
    * Provisions a GitHub repository from payload metadata or explicit parameters
    */
   async provisionRepository(params: ProvisionRepoParams): Promise<GitHubRepoMetadata> {
-    const payload = params.payload;
+    const payload = params.payload as any;
 
     // 1. Resolve raw repository name
     const rawRepoName =

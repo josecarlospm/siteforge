@@ -1,0 +1,39 @@
+{
+  "name": "@siteforge/factory-orchestrator",
+  "version": "1.0.0",
+  "description": "Unified Web Factory connection portal and end-to-end orchestration runner",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "siteforge-orchestrate": "bin/siteforge-orchestrate.js",
+    "siteforge-telemetry": "bin/siteforge-telemetry.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "orchestrate": "node bin/siteforge-orchestrate.js",
+    "telemetry": "node bin/siteforge-telemetry.js"
+  },
+  "keywords": [
+    "siteforge",
+    "orchestrator",
+    "angular",
+    "web-factory",
+    "telemetry"
+  ],
+  "author": "SiteForge CTO",
+  "license": "MIT",
+  "dependencies": {
+    "@siteforge/payload-schema": "*",
+    "@siteforge/scaffolding-engine": "*",
+    "@siteforge/github-engine": "*",
+    "@siteforge/vercel-pipeline": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
