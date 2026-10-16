@@ -8,10 +8,10 @@
     "tagline": "The Social Network for Urban Gardeners and Rare Plant Enthusiasts",
     "description": "Share progress photos, diagnose leaf pests with peer botanists, trade cuttings, and discover local plant swaps.",
     "branding": {
-      "primaryColor": "#6366F1",
-      "secondaryColor": "#06B6D4",
-      "fontHeading": "Plus Jakarta Sans",
-      "fontBody": "Inter"
+      "primaryColor": "#E07A3D",
+      "secondaryColor": "#5A6A7A",
+      "fontHeading": "IBM Plex Sans",
+      "fontBody": "IBM Plex Sans"
     },
     "content": {
       "platformType": "community_hub",

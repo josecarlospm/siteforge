@@ -37,12 +37,12 @@ SiteForge treats website structures as parameterized archetypes with pre-enginee
 * `landing_page`: High-conversion hero banners, feature grids, proof points, testimonial carousels, CTA buttons.
 
 ### 3.2 Pillar 2: Design Token Presets (`designPreset` mapped to `Design.md`)
-To eliminate generic AI-generated aesthetics, SiteForge enforces strict predefined style presets compiled into CSS variables:
-* `neo-brutalist`: High-contrast black borders (2px–3px), vibrant primary accents, sharp corners (`0px` radius), monospaced typography accents.
-* `clean-editorial`: Serif display headings (Playfair/Merriweather), understated luxury, generous whitespace, warm neutral surfaces.
-* `modern-saas-dark`: Slate/Zinc `#09090b` surfaces, subtle 1px border glows, neon indigo/cyan accents, glassmorphic cards.
-* `warm-organic`: Earthy palettes (forest greens, sage, warm terracotta, oatmeal), rounded pill elements, soft shadows (ideal for wellness & plant care).
-* `corporate-enterprise`: Clean navy/slate palettes, dense structured information grids, authoritative sans-serif typography.
+Canonical rules live in root `Design.md` (SF-09). Enum keys are stable; aesthetics were rewritten to escape AI-slop clusters:
+* `warm-organic` *(Greenhouse Lab)*: Cool limestone + chlorophyll botanical lab for PlantCare learning — no cream/serif/terracotta.
+* `neo-brutalist` *(Signal Block)*: Hard black borders, electric yellow, teal secondary, zero radius — no purple SaaS leftovers.
+* `clean-editorial` *(Gallery Press)*: Cool gallery paper, Literata + Source Sans 3, vermillion print — not broadsheet.
+* `modern-saas-dark` *(Forge Night)*: Graphite + forge-ember + brass for SiteForge portal — no indigo glow.
+* `corporate-enterprise` *(Ledger)*: Swiss institutional white, teal authority, brass accent — not generic `#2563EB` + Inter.
 
 ### 3.3 Pillar 3: Theme & Domain Seed (`theme`)
 Defines the domain entity model, semantic copy, and asset bindings.

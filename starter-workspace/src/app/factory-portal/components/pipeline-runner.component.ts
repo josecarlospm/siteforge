@@ -1,42 +1,41 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FactoryStateService } from '../services/factory-state.service';
 
 @Component({
   selector: 'sf-pipeline-runner',
-  standalone: true,
-  imports: [CommonModule],
   template: `
-    <section class="orchestration-section">
-      <div class="runner-card">
+    <section class="orchestration-section" aria-labelledby="runner-heading">
+      <div class="runner-panel">
         <div class="runner-header">
           <div>
-            <h3 class="runner-title">5. Autonomous Factory Orchestration Runner</h3>
-            <span class="runner-subtitle">Validates payload, scaffolds Angular 19+ repo, pushes to GitHub & deploys to Vercel</span>
+            <p class="section-kicker">05 · Orchestration</p>
+            <h2 class="runner-title" id="runner-heading">Run factory</h2>
+            <p class="runner-subtitle">
+              Validate → scaffold → GitHub sync → Vercel deploy → live verify
+            </p>
           </div>
 
           <button
+            type="button"
             class="sf-btn sf-btn-primary generate-cta"
             [disabled]="isGenerating()"
             (click)="startGeneration()"
           >
             @if (isGenerating()) {
-              <span class="spinner"></span> Orchestrating...
+              <span class="spinner" aria-hidden="true"></span> Orchestrating…
             } @else {
-              ⚡ Run SiteForge Web Factory
+              Run SiteForge
             }
           </button>
         </div>
 
-        <!-- Progress Bar -->
         @if (progress() > 0) {
-          <div class="progress-wrap">
+          <div class="progress-wrap" role="progressbar" [attr.aria-valuenow]="progress()" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar" [style.width.%]="progress()"></div>
-            <span class="progress-text">{{ progress() }}% Complete</span>
+            <span class="progress-text">{{ progress() }}%</span>
           </div>
         }
 
-        <!-- Stages Stepper -->
         <div class="stages-stepper">
           @for (stage of stages(); track stage.id; let idx = $index) {
             <div
@@ -45,7 +44,7 @@ import { FactoryStateService } from '../services/factory-state.service';
               [class.running]="stage.status === 'running'"
               [class.idle]="stage.status === 'idle'"
             >
-              <div class="step-indicator">
+              <div class="step-indicator" aria-hidden="true">
                 @if (stage.status === 'completed') {
                   <span class="icon-check">✓</span>
                 } @else if (stage.status === 'running') {
@@ -62,14 +61,10 @@ import { FactoryStateService } from '../services/factory-state.service';
           }
         </div>
 
-        <!-- Real-Time Console Logs -->
         @if (logs().length > 0) {
           <div class="terminal-window">
             <div class="terminal-bar">
-              <span class="terminal-dot red"></span>
-              <span class="terminal-dot yellow"></span>
-              <span class="terminal-dot green"></span>
-              <span class="terminal-title">siteforge-factory-orchestrator.log</span>
+              <span class="terminal-title">siteforge-orchestrator.log</span>
             </div>
             <div class="terminal-body">
               @for (log of logs(); track log) {
@@ -79,44 +74,38 @@ import { FactoryStateService } from '../services/factory-state.service';
           </div>
         }
 
-        <!-- Final Deployment Showcase Card -->
         @if (result(); as res) {
-          <div class="deployment-result-card">
-            <div class="result-badge">
-              <span class="celebration-icon">🎉</span>
-              <div>
-                <h4 class="result-title">Website Generated & Deployed Successfully!</h4>
-                <p class="result-meta">
-                  Published in <strong>{{ (res.durationMs / 1000).toFixed(1) }}s</strong> (Target: &lt; 3 minutes) •
-                  <strong>{{ res.filesGenerated }} files</strong> • Preset: <code>{{ res.designPreset }}</code>
-                </p>
-              </div>
-            </div>
+          <div class="deployment-result">
+            <h3 class="result-title">Deployed successfully</h3>
+            <p class="result-meta">
+              {{ (res.durationMs / 1000).toFixed(1) }}s ·
+              {{ res.filesGenerated }} files ·
+              <code>{{ res.designPreset }}</code>
+            </p>
 
             <div class="urls-grid">
-              <div class="url-box primary-box">
-                <span class="url-label">Production Vercel URL</span>
-                <a class="url-link primary-link" [href]="res.vercelUrl" target="_blank" rel="noopener">
-                  {{ res.vercelUrl }} ↗
+              <div class="url-box">
+                <span class="url-label">Production URL</span>
+                <a class="url-link" [href]="res.vercelUrl" target="_blank" rel="noopener">
+                  {{ res.vercelUrl }}
                 </a>
               </div>
-
               <div class="url-box">
-                <span class="url-label">GitHub Repository</span>
+                <span class="url-label">GitHub repository</span>
                 <a class="url-link" [href]="res.githubUrl" target="_blank" rel="noopener">
-                  {{ res.githubUrl }} ↗
+                  {{ res.githubUrl }}
                 </a>
               </div>
             </div>
 
             <div class="action-row">
               <a class="sf-btn sf-btn-primary" [href]="res.vercelUrl" target="_blank" rel="noopener">
-                🚀 Open Live Website
+                Open live site
               </a>
               <a class="sf-btn sf-btn-secondary" [href]="res.githubUrl" target="_blank" rel="noopener">
-                🐙 Inspect GitHub Repo
+                Inspect repo
               </a>
-              <span class="commit-tag">Commit: <code>{{ res.commitSha.substring(0, 7) }}</code></span>
+              <span class="commit-tag">Commit <code>{{ res.commitSha.substring(0, 7) }}</code></span>
             </div>
           </div>
         }
@@ -124,10 +113,7 @@ import { FactoryStateService } from '../services/factory-state.service';
     </section>
   `,
   styles: [`
-    .orchestration-section {
-      margin-bottom: var(--spacing-8, 32px);
-    }
-    .runner-card {
+    .runner-panel {
       background: var(--color-surface);
       border: var(--border-width) solid var(--color-border);
       border-radius: var(--radius-card);
@@ -141,86 +127,96 @@ import { FactoryStateService } from '../services/factory-state.service';
       gap: var(--spacing-4, 16px);
       margin-bottom: var(--spacing-6, 24px);
     }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
+    }
     .runner-title {
-      font-size: var(--text-lg, 1.125rem);
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
+      margin: 0;
     }
     .runner-subtitle {
       font-size: var(--text-sm, 0.875rem);
       color: var(--color-text-muted);
     }
     .generate-cta {
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: var(--radius-pill);
-      box-shadow: 0 4px 14px rgba(45, 90, 39, 0.25);
+      padding: 12px 22px;
+      font-size: 0.95rem;
+    }
+    .generate-cta:disabled {
+      opacity: 0.7;
+      cursor: wait;
     }
     .progress-wrap {
       position: relative;
-      height: 12px;
+      height: 6px;
       background: var(--color-surface-muted);
-      border-radius: var(--radius-pill);
+      border-radius: 2px;
       overflow: hidden;
       margin-bottom: var(--spacing-6, 24px);
     }
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
       transition: width 300ms ease-out;
     }
     .progress-text {
       position: absolute;
-      right: 8px;
+      right: 0;
       top: -18px;
       font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--color-primary);
+      font-weight: 650;
+      font-family: var(--font-mono);
+      color: var(--color-accent);
     }
     .stages-stepper {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
       margin-bottom: var(--spacing-6, 24px);
     }
     .stage-step {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: var(--radius-card);
       border: 1px solid var(--color-border);
       background: var(--color-bg);
-      transition: all 200ms ease;
+      transition: border-color 200ms ease;
     }
     .stage-step.completed {
       border-color: var(--color-primary);
-      background: var(--color-surface);
     }
     .stage-step.running {
       border-color: var(--color-accent);
-      background: var(--color-surface);
-      box-shadow: 0 0 0 2px var(--color-accent);
     }
     .step-indicator {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       background: var(--color-surface-muted);
       color: var(--color-text-muted);
+      flex-shrink: 0;
     }
     .stage-step.completed .step-indicator {
       background: var(--color-primary);
-      color: #FFFFFF;
+      color: #0E1116;
     }
     .stage-step.running .step-indicator {
       background: var(--color-accent);
-      color: #FFFFFF;
+      color: #0E1116;
     }
     .step-details {
       display: flex;
@@ -228,82 +224,67 @@ import { FactoryStateService } from '../services/factory-state.service';
       overflow: hidden;
     }
     .step-label {
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 0.78rem;
+      font-weight: 650;
       color: var(--color-text-main);
       white-space: nowrap;
     }
     .step-desc {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--color-text-muted);
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
     }
     .terminal-window {
-      background: #0D1117;
+      background: #0A0D12;
       border-radius: var(--radius-card);
-      border: 1px solid #30363D;
+      border: 1px solid var(--color-border);
       overflow: hidden;
       margin-bottom: var(--spacing-6, 24px);
     }
     .terminal-bar {
-      background: #161B22;
+      background: var(--color-surface-muted);
       padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
-    .terminal-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .terminal-dot.red { background: #FF5F56; }
-    .terminal-dot.yellow { background: #FFBD2E; }
-    .terminal-dot.green { background: #27C93F; }
     .terminal-title {
-      color: #8B949E;
+      color: var(--color-text-muted);
       font-size: 0.7rem;
-      font-family: ui-monospace, monospace;
-      margin-left: 8px;
+      font-family: var(--font-mono);
     }
     .terminal-body {
       padding: 12px;
       max-height: 160px;
       overflow-y: auto;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: #58A6FF;
+      color: var(--color-accent);
       line-height: 1.5;
     }
     .log-line {
       white-space: pre-wrap;
       word-break: break-all;
     }
-    .deployment-result-card {
-      background: linear-gradient(135deg, rgba(45, 90, 39, 0.08) 0%, rgba(143, 188, 143, 0.12) 100%);
-      border: 2px solid var(--color-primary);
+    .deployment-result {
+      border: 1px solid var(--color-primary);
       border-radius: var(--radius-card);
       padding: var(--spacing-6, 24px);
-    }
-    .result-badge {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: var(--spacing-4, 16px);
-    }
-    .celebration-icon {
-      font-size: 2.25rem;
+      background: linear-gradient(135deg, rgba(224, 122, 61, 0.08), rgba(201, 162, 39, 0.06));
     }
     .result-title {
-      font-size: 1.25rem;
-      font-weight: 800;
+      font-size: 1.125rem;
+      font-weight: 700;
       color: var(--color-text-main);
+      margin-bottom: 4px;
     }
     .result-meta {
       font-size: 0.85rem;
       color: var(--color-text-muted);
+      margin-bottom: var(--spacing-4, 16px);
+    }
+    .result-meta code {
+      font-family: var(--font-mono);
+      color: var(--color-accent);
     }
     .urls-grid {
       display: grid;
@@ -311,8 +292,13 @@ import { FactoryStateService } from '../services/factory-state.service';
       gap: 12px;
       margin-bottom: var(--spacing-5, 20px);
     }
+    @media (max-width: 640px) {
+      .urls-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     .url-box {
-      background: var(--color-surface);
+      background: var(--color-bg);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-btn);
       padding: 12px;
@@ -320,22 +306,19 @@ import { FactoryStateService } from '../services/factory-state.service';
       flex-direction: column;
       gap: 4px;
     }
-    .url-box.primary-box {
-      border-color: var(--color-primary);
-      background: #FFFFFF;
-    }
     .url-label {
-      font-size: 0.7rem;
-      font-weight: 700;
+      font-size: 0.68rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
       color: var(--color-text-muted);
     }
     .url-link {
-      font-family: ui-monospace, monospace;
-      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
       color: var(--color-primary);
       font-weight: 600;
+      word-break: break-all;
       text-decoration: underline;
     }
     .action-row {
@@ -348,19 +331,16 @@ import { FactoryStateService } from '../services/factory-state.service';
       font-size: 0.75rem;
       color: var(--color-text-muted);
       margin-left: auto;
+      font-family: var(--font-mono);
     }
     .spinner, .step-spinner {
       display: inline-block;
       width: 14px;
       height: 14px;
-      border: 2px solid rgba(255,255,255,0.3);
+      border: 2px solid rgba(14, 17, 22, 0.25);
       border-radius: 50%;
-      border-top-color: #fff;
+      border-top-color: #0E1116;
       animation: spin 0.8s linear infinite;
-    }
-    .step-spinner {
-      border-color: rgba(0,0,0,0.2);
-      border-top-color: var(--color-accent);
     }
     @keyframes spin {
       to { transform: rotate(360deg); }

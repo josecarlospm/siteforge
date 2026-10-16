@@ -1,34 +1,32 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FactoryStateService } from '../services/factory-state.service';
 import { FactorySiteType } from '../models/factory.model';
 
 @Component({
   selector: 'sf-theme-editor',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   template: `
-    <section class="theme-section">
+    <section class="theme-section" aria-labelledby="theme-heading">
       <div class="section-header">
         <div class="title-wrap">
-          <h3 class="section-title">3. Domain Theme & Content Parameters</h3>
-          <span class="section-subtitle">Define what your website is about and customize branding</span>
+          <p class="section-kicker">03 · Theme</p>
+          <h2 class="section-title" id="theme-heading">Content & branding</h2>
+          <p class="section-subtitle">Domain topic, commercial name, and brand color overrides</p>
         </div>
 
-        <div class="sample-pills">
-          <span class="pill-label">Quick Samples:</span>
-          <button class="sample-btn" (click)="loadSample('learning_platform')">🌱 Plants E-Learning</button>
-          <button class="sample-btn" (click)="loadSample('ecommerce')">⌨️ Keyboards Store</button>
-          <button class="sample-btn" (click)="loadSample('newsletter')">🤖 Agentic Newsletter</button>
-          <button class="sample-btn" (click)="loadSample('landing_page')">⚡ Web Factory SaaS</button>
+        <div class="sample-row">
+          <span class="sample-label">Load sample</span>
+          <button type="button" class="sample-btn" (click)="loadSample('learning_platform')">PlantCare learning</button>
+          <button type="button" class="sample-btn" (click)="loadSample('ecommerce')">Keyboards store</button>
+          <button type="button" class="sample-btn" (click)="loadSample('newsletter')">Agentic digest</button>
+          <button type="button" class="sample-btn" (click)="loadSample('landing_page')">Factory launch</button>
         </div>
       </div>
 
       <div class="editor-grid">
-        <!-- Site Name -->
         <div class="form-group">
-          <label class="form-label" for="siteName">Commercial / Site Name</label>
+          <label class="form-label" for="siteName">Site name</label>
           <input
             id="siteName"
             type="text"
@@ -39,9 +37,8 @@ import { FactorySiteType } from '../models/factory.model';
           />
         </div>
 
-        <!-- Topic -->
         <div class="form-group">
-          <label class="form-label" for="topic">Content Topic / Domain</label>
+          <label class="form-label" for="topic">Topic / domain</label>
           <input
             id="topic"
             type="text"
@@ -52,7 +49,6 @@ import { FactorySiteType } from '../models/factory.model';
           />
         </div>
 
-        <!-- Tagline -->
         <div class="form-group full-width">
           <label class="form-label" for="tagline">Tagline</label>
           <input
@@ -61,28 +57,27 @@ import { FactorySiteType } from '../models/factory.model';
             class="form-input"
             [ngModel]="tagline()"
             (ngModelChange)="update('tagline', $event)"
-            placeholder="e.g. Cultivate your indoor jungle with botanical masterclasses"
+            placeholder="One supporting line"
           />
         </div>
 
-        <!-- Description -->
         <div class="form-group full-width">
-          <label class="form-label" for="description">Meta Description & Overview</label>
+          <label class="form-label" for="description">Description</label>
           <textarea
             id="description"
             class="form-textarea"
             rows="2"
             [ngModel]="description()"
             (ngModelChange)="update('description', $event)"
-            placeholder="Brief description of the website content and mission"
+            placeholder="Brief mission and content overview"
           ></textarea>
         </div>
 
-        <!-- Colors -->
         <div class="form-group">
-          <label class="form-label">Primary Brand Color</label>
+          <label class="form-label" for="primaryColor">Primary color</label>
           <div class="color-picker-wrap">
             <input
+              id="primaryColor"
               type="color"
               class="color-input"
               [ngModel]="primaryColor()"
@@ -93,14 +88,16 @@ import { FactorySiteType } from '../models/factory.model';
               class="form-input font-mono"
               [ngModel]="primaryColor()"
               (ngModelChange)="update('primaryColor', $event)"
+              aria-label="Primary color hex"
             />
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-label">Secondary Brand Color</label>
+          <label class="form-label" for="secondaryColor">Secondary color</label>
           <div class="color-picker-wrap">
             <input
+              id="secondaryColor"
               type="color"
               class="color-input"
               [ngModel]="secondaryColor()"
@@ -111,6 +108,7 @@ import { FactorySiteType } from '../models/factory.model';
               class="form-input font-mono"
               [ngModel]="secondaryColor()"
               (ngModelChange)="update('secondaryColor', $event)"
+              aria-label="Secondary color hex"
             />
           </div>
         </div>
@@ -118,46 +116,53 @@ import { FactorySiteType } from '../models/factory.model';
     </section>
   `,
   styles: [`
-    .theme-section {
-      margin-bottom: var(--spacing-8, 32px);
-    }
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
       gap: var(--spacing-3, 12px);
-      margin-bottom: var(--spacing-4, 16px);
+      margin-bottom: var(--spacing-5, 20px);
+    }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
     }
     .section-title {
-      font-size: var(--text-lg, 1.125rem);
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
+      margin: 0 0 4px;
     }
     .section-subtitle {
       font-size: var(--text-sm, 0.875rem);
       color: var(--color-text-muted);
     }
-    .sample-pills {
+    .sample-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
     }
-    .pill-label {
-      font-size: 0.75rem;
+    .sample-label {
+      font-size: 0.7rem;
       font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: var(--color-text-muted);
     }
     .sample-btn {
       font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: var(--radius-pill);
-      background-color: var(--color-surface);
+      padding: 6px 10px;
+      border-radius: var(--radius-btn);
+      background: var(--color-surface);
       border: 1px solid var(--color-border);
       color: var(--color-text-main);
       cursor: pointer;
-      transition: all 120ms ease;
     }
     .sample-btn:hover {
       border-color: var(--color-primary);
@@ -182,9 +187,9 @@ import { FactorySiteType } from '../models/factory.model';
     }
     .form-label {
       font-size: var(--text-xs, 0.75rem);
-      font-weight: 700;
+      font-weight: 650;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
       color: var(--color-text-muted);
     }
     .form-input, .form-textarea {
@@ -196,13 +201,12 @@ import { FactorySiteType } from '../models/factory.model';
       color: var(--color-text-main);
       font-family: inherit;
       outline: none;
-      transition: border-color var(--transition-fast, 150ms ease);
     }
     .form-input:focus, .form-textarea:focus {
       border-color: var(--color-primary);
     }
     .font-mono {
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
     }
     .color-picker-wrap {
       display: flex;
@@ -218,6 +222,11 @@ import { FactorySiteType } from '../models/factory.model';
       padding: 0;
       background: none;
     }
+    @media (max-width: 640px) {
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   `],
 })
 export class ThemeEditorComponent {
@@ -230,7 +239,16 @@ export class ThemeEditorComponent {
   readonly primaryColor = this.state.primaryColor;
   readonly secondaryColor = this.state.secondaryColor;
 
-  update(field: any, val: string): void {
+  update(
+    field:
+      | 'topic'
+      | 'siteName'
+      | 'tagline'
+      | 'description'
+      | 'primaryColor'
+      | 'secondaryColor',
+    val: string,
+  ): void {
     this.state.updateField(field, val);
   }
 

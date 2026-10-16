@@ -1,150 +1,123 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FactoryStateService } from '../services/factory-state.service';
 
 @Component({
   selector: 'sf-connection-cards',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   template: `
-    <section class="integrations-section">
+    <section class="integrations-section" aria-labelledby="integrations-heading">
       <div class="section-header">
-        <h3 class="section-title">4. Cloud Integrations & Git Deployment</h3>
-        <span class="section-subtitle">Connect your repository and host for zero-touch continuous deployment</span>
+        <p class="section-kicker">04 · Integrations</p>
+        <h2 class="section-title" id="integrations-heading">GitHub & Vercel</h2>
+        <p class="section-subtitle">Connect repository and host for continuous deployment</p>
       </div>
 
-      <div class="cards-grid">
-        <!-- GitHub Connection Card -->
-        <div class="integration-card">
-          <div class="card-header">
-            <div class="service-brand">
-              <span class="service-icon">🐙</span>
-              <div>
-                <h4 class="service-name">GitHub Integration</h4>
-                <span class="service-auth">Account: <strong>josecarlospm</strong></span>
-              </div>
-            </div>
-            <span class="sf-badge sf-badge-primary">● Active</span>
+      <div class="fields-grid">
+        <div class="integration-panel">
+          <div class="panel-head">
+            <h3 class="service-name">GitHub</h3>
+            <span class="status-text">Connected · josecarlospm</span>
           </div>
 
-          <div class="card-body">
-            <div class="form-group">
-              <label class="form-label" for="repoName">Repository Name</label>
-              <div class="input-prefix-group">
-                <span class="input-prefix">github.com/josecarlospm/</span>
-                <input
-                  id="repoName"
-                  type="text"
-                  class="form-input"
-                  [ngModel]="githubRepo()"
-                  (ngModelChange)="update('githubRepo', $event)"
-                />
-              </div>
-            </div>
-
-            <div class="integration-meta">
-              <span>Branch: <code>main</code></span>
-              <span>Author: <code>Jose Carlos Perez &lt;jos3k4&#64;gmail.com&gt;</code></span>
-              <span>Visibility: <strong>Public</strong></span>
+          <div class="form-group">
+            <label class="form-label" for="repoName">Repository name</label>
+            <div class="input-prefix-group">
+              <span class="input-prefix">github.com/josecarlospm/</span>
+              <input
+                id="repoName"
+                type="text"
+                class="form-input"
+                [ngModel]="githubRepo()"
+                (ngModelChange)="update('githubRepo', $event)"
+              />
             </div>
           </div>
+
+          <p class="meta-line">Branch <code>main</code> · Public · Author Jose Carlos Perez</p>
         </div>
 
-        <!-- Vercel Deployment Card -->
-        <div class="integration-card">
-          <div class="card-header">
-            <div class="service-brand">
-              <span class="service-icon">▲</span>
-              <div>
-                <h4 class="service-name">Vercel Deployment</h4>
-                <span class="service-auth">Team: <strong>SiteForge Production</strong></span>
-              </div>
-            </div>
-            <span class="sf-badge sf-badge-primary">● Zero-Config</span>
+        <div class="integration-panel">
+          <div class="panel-head">
+            <h3 class="service-name">Vercel</h3>
+            <span class="status-text">Zero-config Angular</span>
           </div>
 
-          <div class="card-body">
-            <div class="form-group">
-              <label class="form-label" for="projectName">Vercel Project Target</label>
-              <div class="input-prefix-group">
-                <input
-                  id="projectName"
-                  type="text"
-                  class="form-input"
-                  [ngModel]="vercelProject()"
-                  (ngModelChange)="update('vercelProject', $event)"
-                />
-                <span class="input-suffix">.vercel.app</span>
-              </div>
-            </div>
-
-            <div class="integration-meta">
-              <span>Framework: <code>Angular 19+ (Zoneless)</code></span>
-              <span>Build: <code>npm run build</code></span>
-              <span>Output: <code>dist/{{ vercelProject() }}/browser</code></span>
+          <div class="form-group">
+            <label class="form-label" for="projectName">Project target</label>
+            <div class="input-prefix-group">
+              <input
+                id="projectName"
+                type="text"
+                class="form-input"
+                [ngModel]="vercelProject()"
+                (ngModelChange)="update('vercelProject', $event)"
+              />
+              <span class="input-suffix">.vercel.app</span>
             </div>
           </div>
+
+          <p class="meta-line">Build <code>npm run build</code> · Output <code>dist/…/browser</code></p>
         </div>
       </div>
     </section>
   `,
   styles: [`
-    .integrations-section {
-      margin-bottom: var(--spacing-8, 32px);
-    }
     .section-header {
-      margin-bottom: var(--spacing-4, 16px);
+      margin-bottom: var(--spacing-5, 20px);
+    }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
     }
     .section-title {
-      font-size: var(--text-lg, 1.125rem);
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
+      margin: 0 0 4px;
     }
     .section-subtitle {
       font-size: var(--text-sm, 0.875rem);
       color: var(--color-text-muted);
     }
-    .cards-grid {
+    .fields-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--spacing-4, 16px);
     }
     @media (max-width: 768px) {
-      .cards-grid {
+      .fields-grid {
         grid-template-columns: 1fr;
       }
     }
-    .integration-card {
+    .integration-panel {
       background: var(--color-surface);
       border: var(--border-width) solid var(--color-border);
       border-radius: var(--radius-card);
       padding: var(--spacing-5, 20px);
     }
-    .card-header {
+    .panel-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
+      gap: 12px;
       margin-bottom: var(--spacing-4, 16px);
       padding-bottom: var(--spacing-3, 12px);
-      border-bottom: 1px dashed var(--color-border);
-    }
-    .service-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .service-icon {
-      font-size: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
     }
     .service-name {
       font-size: var(--text-base, 1rem);
-      font-weight: 700;
+      font-weight: 650;
       color: var(--color-text-main);
     }
-    .service-auth {
+    .status-text {
       font-size: var(--text-xs, 0.75rem);
-      color: var(--color-text-muted);
+      color: var(--color-accent);
+      font-family: var(--font-mono);
     }
     .form-group {
       display: flex;
@@ -154,9 +127,9 @@ import { FactoryStateService } from '../services/factory-state.service';
     }
     .form-label {
       font-size: var(--text-xs, 0.75rem);
-      font-weight: 700;
+      font-weight: 650;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
       color: var(--color-text-muted);
     }
     .input-prefix-group {
@@ -172,7 +145,7 @@ import { FactoryStateService } from '../services/factory-state.service';
       color: var(--color-text-muted);
       padding: 0 10px;
       background: var(--color-surface-muted);
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       white-space: nowrap;
     }
     .form-input {
@@ -183,20 +156,15 @@ import { FactoryStateService } from '../services/factory-state.service';
       color: var(--color-text-main);
       outline: none;
       width: 100%;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
     }
-    .integration-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .meta-line {
       font-size: 0.75rem;
       color: var(--color-text-muted);
     }
-    .integration-meta code {
-      background: var(--color-surface-muted);
-      padding: 1px 4px;
-      border-radius: 3px;
-      font-size: 0.7rem;
+    .meta-line code {
+      font-family: var(--font-mono);
+      color: var(--color-text-main);
     }
   `],
 })
@@ -206,7 +174,7 @@ export class ConnectionCardsComponent {
   readonly githubRepo = this.state.githubRepo;
   readonly vercelProject = this.state.vercelProject;
 
-  update(field: any, val: string): void {
+  update(field: 'githubRepo' | 'vercelProject', val: string): void {
     this.state.updateField(field, val);
   }
 }

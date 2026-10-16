@@ -61,8 +61,14 @@ button {
 
 .sf-btn-primary {
   background-color: var(--color-primary);
-  color: #FFFFFF;
+  color: #0E1116;
   box-shadow: var(--shadow-button);
+}
+
+:root[data-theme="warm-organic"] .sf-btn-primary,
+:root[data-theme="clean-editorial"] .sf-btn-primary,
+:root[data-theme="corporate-enterprise"] .sf-btn-primary {
+  color: #FFFFFF;
 }
 
 .sf-btn-primary:hover {

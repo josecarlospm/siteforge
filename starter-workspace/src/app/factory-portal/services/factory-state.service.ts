@@ -1,6 +1,5 @@
-import { Injectable, signal, computed, inject } from '@angular/core';
-import { ThemeService } from '../../core/services/theme.service';
-import { DesignPresetName } from '../../core/models/design-tokens.model';
+import { Injectable, signal, computed } from '@angular/core';
+import { DesignPresetName, DESIGN_PRESETS } from '../../core/models/design-tokens.model';
 import {
   FactorySiteType,
   PipelineStageInfo,
@@ -12,8 +11,6 @@ import {
   providedIn: 'root',
 })
 export class FactoryStateService {
-  private readonly themeService = inject(ThemeService);
-
   // Form Fields
   readonly siteType = signal<FactorySiteType>('learning_platform');
   readonly designPreset = signal<DesignPresetName>('warm-organic');
@@ -21,8 +18,8 @@ export class FactoryStateService {
   readonly siteName = signal<string>('PlantCare Academy');
   readonly tagline = signal<string>('Cultivate your indoor jungle with botanical masterclasses');
   readonly description = signal<string>('Interactive watering diagnostics, lighting calculators, and masterclasses taught by experts.');
-  readonly primaryColor = signal<string>('#2D5A27');
-  readonly secondaryColor = signal<string>('#8FBC8F');
+  readonly primaryColor = signal<string>('#145C45');
+  readonly secondaryColor = signal<string>('#2F8F6B');
   readonly githubRepo = signal<string>('plantcare-academy-web');
   readonly vercelProject = signal<string>('plantcare-academy');
   readonly githubConnected = signal<boolean>(true);
@@ -87,8 +84,8 @@ export class FactoryStateService {
         branding: {
           primaryColor: this.primaryColor(),
           secondaryColor: this.secondaryColor(),
-          fontHeading: this.themeService.currentTokens().typography.fontHeading,
-          fontBody: this.themeService.currentTokens().typography.fontBody,
+          fontHeading: DESIGN_PRESETS[this.designPreset()].typography.fontHeading,
+          fontBody: DESIGN_PRESETS[this.designPreset()].typography.fontBody,
         },
       },
       integrations: {
@@ -125,8 +122,8 @@ export class FactoryStateService {
 
   setPreset(preset: DesignPresetName): void {
     this.designPreset.set(preset);
-    this.themeService.setPreset(preset);
-    const tokens = this.themeService.currentTokens();
+    // Portal chrome stays Forge Night; payload preset is independent (SF-11).
+    const tokens = DESIGN_PRESETS[preset];
     this.primaryColor.set(tokens.colors.primary);
     this.secondaryColor.set(tokens.colors.secondary);
     this.syncJsonStringFromFields();
@@ -148,11 +145,9 @@ export class FactoryStateService {
         break;
       case 'primaryColor':
         this.primaryColor.set(value);
-        this.themeService.applyCustomColorOverrides(value, this.secondaryColor());
         break;
       case 'secondaryColor':
         this.secondaryColor.set(value);
-        this.themeService.applyCustomColorOverrides(this.primaryColor(), value);
         break;
       case 'githubRepo':
         this.githubRepo.set(value);
@@ -169,9 +164,15 @@ export class FactoryStateService {
     try {
       const parsed = JSON.parse(jsonText);
       if (parsed.siteType) this.siteType.set(parsed.siteType);
-      if (parsed.designPreset) {
-        this.designPreset.set(parsed.designPreset);
-        this.themeService.setPreset(parsed.designPreset);
+      if (parsed.designPreset && DESIGN_PRESETS[parsed.designPreset as DesignPresetName]) {
+        this.designPreset.set(parsed.designPreset as DesignPresetName);
+        const tokens = DESIGN_PRESETS[parsed.designPreset as DesignPresetName];
+        if (!parsed.theme?.branding?.primaryColor) {
+          this.primaryColor.set(tokens.colors.primary);
+        }
+        if (!parsed.theme?.branding?.secondaryColor) {
+          this.secondaryColor.set(tokens.colors.secondary);
+        }
       }
       if (parsed.theme?.name) this.siteName.set(parsed.theme.name);
       if (parsed.theme?.topic) this.topic.set(parsed.theme.topic);
@@ -307,7 +308,7 @@ export class FactoryStateService {
 
       const totalDuration = Date.now() - startTime;
       addLog(`=======================================================`);
-      addLog(`🎉 Factory Orchestration Complete in ${(totalDuration / 1000).toFixed(1)}s (Accepted < 3m)`);
+      addLog(`Factory orchestration complete in ${(totalDuration / 1000).toFixed(1)}s (Accepted < 3m)`);
       addLog(`Live URL: ${vercelUrl}`);
       addLog(`GitHub:   ${githubUrl}`);
       addLog(`=======================================================`);

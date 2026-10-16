@@ -12,10 +12,10 @@ export const INITIAL_PLANTCARE_PAYLOAD: SiteForgePayload<PlantCareContent> = {
     description:
       'Interactive masterclasses, watering diagnostics, lighting calculators, and pest emergency guides taught by botanical experts.',
     branding: {
-      primaryColor: '#2D5A27',
-      secondaryColor: '#8FBC8F',
-      fontHeading: 'Fraunces',
-      fontBody: 'Plus Jakarta Sans',
+      primaryColor: '#145C45',
+      secondaryColor: '#2F8F6B',
+      fontHeading: 'Syne',
+      fontBody: 'DM Sans',
     },
     content: {
       featuredCategories: [

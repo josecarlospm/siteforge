@@ -134,16 +134,16 @@ export interface Course {
               <div class="botanical-art-card">
                 <svg class="plant-svg" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <!-- Pot -->
-                  <path d="M100 220 L120 290 Q160 300 200 290 L220 220 Z" fill="#C86D51" stroke="#A7533B" stroke-width="3" />
+                  <path d="M100 220 L120 290 Q160 300 200 290 L220 220 Z" fill="#1A5F7A" stroke="#144A5F" stroke-width="3" />
                   <ellipse cx="160" cy="220" rx="60" ry="12" fill="#E28E73" stroke="#A7533B" stroke-width="2" />
                   <!-- Soil -->
                   <ellipse cx="160" cy="220" rx="55" ry="9" fill="#4A3525" />
                   <!-- Main Stems -->
-                  <path d="M160 215 Q150 160 120 120" stroke="#2D5A27" stroke-width="6" stroke-linecap="round" fill="none" />
-                  <path d="M160 215 Q165 140 200 90" stroke="#2D5A27" stroke-width="6" stroke-linecap="round" fill="none" />
-                  <path d="M160 215 Q170 170 160 60" stroke="#2D5A27" stroke-width="5" stroke-linecap="round" fill="none" />
+                  <path d="M160 215 Q150 160 120 120" stroke="#145C45" stroke-width="6" stroke-linecap="round" fill="none" />
+                  <path d="M160 215 Q165 140 200 90" stroke="#145C45" stroke-width="6" stroke-linecap="round" fill="none" />
+                  <path d="M160 215 Q170 170 160 60" stroke="#145C45" stroke-width="5" stroke-linecap="round" fill="none" />
                   <!-- Monstera Left Leaf with Fenestrations -->
-                  <path d="M120 120 C90 100 60 110 50 140 C40 170 70 200 110 180 C130 170 135 140 120 120 Z" fill="#2D5A27" />
+                  <path d="M120 120 C90 100 60 110 50 140 C40 170 70 200 110 180 C130 170 135 140 120 120 Z" fill="#145C45" />
                   <ellipse cx="85" cy="140" rx="4" ry="12" transform="rotate(-25 85 140)" fill="#FDFBF7" />
                   <ellipse cx="95" cy="165" rx="3" ry="10" transform="rotate(-15 95 165)" fill="#FDFBF7" />
                   <!-- Monstera Right Leaf with Fenestrations -->

@@ -8,9 +8,9 @@
     "tagline": "Deep-dives into Distributed Systems, Compilers, and Architecture",
     "description": "An independent technical publication exploring large-scale systems engineering, database internals, and software design principles.",
     "branding": {
-      "primaryColor": "#1C1917",
-      "secondaryColor": "#7F1D1D",
-      "fontHeading": "Playfair Display",
+      "primaryColor": "#1B3A4B",
+      "secondaryColor": "#B33A3A",
+      "fontHeading": "Literata",
       "fontBody": "Source Sans 3"
     },
     "content": {
