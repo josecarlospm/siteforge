@@ -84,7 +84,7 @@ describe('ProjectGenerator', () => {
     expect(appTs).toContain('ArchetypeViewComponent');
 
     const tokensCss = fs.readFileSync(path.join(targetDir, 'src/design-tokens.css'), 'utf-8');
-    expect(tokensCss).toContain('--color-primary: #2D5A27;');
+    expect(tokensCss).toContain('--color-primary: #145C45;');
 
     // Verify learning_platform comprehensive template structure
     const archetypeComponent = fs.readFileSync(

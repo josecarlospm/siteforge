@@ -19,7 +19,7 @@ describe('SiteForgeOrchestrator', () => {
       tagline: 'Cultivate your indoor jungle',
       description: 'Master houseplant health with expert guides.',
       branding: {
-        primaryColor: '#2D5A27',
+        primaryColor: '#145C45',
         secondaryColor: '#E8F5E9',
       },
     },

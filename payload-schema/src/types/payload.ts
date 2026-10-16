@@ -26,12 +26,12 @@ export interface ThemeBranding {
   secondaryColor?: string;
 
   /**
-   * Heading font family name (e.g. "Fraunces", "Space Grotesk").
+   * Heading font family name (e.g. "Syne", "Space Grotesk").
    */
   fontHeading?: string;
 
   /**
-   * Body font family name (e.g. "Plus Jakarta Sans", "Inter").
+   * Body font family name (e.g. "DM Sans", "IBM Plex Sans").
    */
   fontBody?: string;
 

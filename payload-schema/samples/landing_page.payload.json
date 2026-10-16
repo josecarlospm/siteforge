@@ -8,10 +8,10 @@
     "tagline": "Industrial IoT & Autonomous Climate Control for Precision Agriculture",
     "description": "Enterprise-grade telemetry, automated nutrient dosing, and micro-climate analytics for commercial greenhouse operations.",
     "branding": {
-      "primaryColor": "#0F172A",
-      "secondaryColor": "#2563EB",
-      "fontHeading": "Inter",
-      "fontBody": "Roboto"
+      "primaryColor": "#0D5C63",
+      "secondaryColor": "#A67C00",
+      "fontHeading": "IBM Plex Sans",
+      "fontBody": "IBM Plex Sans"
     },
     "content": {
       "hero": {

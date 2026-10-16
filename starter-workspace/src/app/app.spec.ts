@@ -28,28 +28,32 @@ describe('SiteForge Starter Workspace', () => {
   it('should initialize ThemeService with warm-organic preset and support dynamic switching', () => {
     const themeService = TestBed.inject(ThemeService);
     expect(themeService.currentPreset()).toBe('warm-organic');
-    expect(themeService.currentTokens().displayName).toBe('Warm Organic');
+    expect(themeService.currentTokens().displayName).toBe('Greenhouse Lab');
+    expect(themeService.currentTokens().colors.bg).toBe('#E7EEEA');
+    expect(themeService.currentTokens().colors.accent).toBe('#1A5F7A');
 
     // Switch to neo-brutalist
     themeService.setPreset('neo-brutalist');
     expect(themeService.currentPreset()).toBe('neo-brutalist');
     expect(themeService.currentTokens().shape.borderWidth).toBe('3px');
     expect(themeService.currentTokens().shape.radiusCard).toBe('0px');
+    expect(themeService.currentTokens().colors.secondary).toBe('#00C2A8');
 
-    // Switch to modern-saas-dark
+    // Switch to modern-saas-dark (Forge Night)
     themeService.setPreset('modern-saas-dark');
     expect(themeService.currentPreset()).toBe('modern-saas-dark');
-    expect(themeService.currentTokens().colors.bg).toBe('#09090B');
+    expect(themeService.currentTokens().colors.bg).toBe('#0E1116');
+    expect(themeService.currentTokens().colors.primary).toBe('#E07A3D');
 
-    // Switch to clean-editorial
+    // Switch to clean-editorial (Gallery Press)
     themeService.setPreset('clean-editorial');
     expect(themeService.currentPreset()).toBe('clean-editorial');
-    expect(themeService.currentTokens().colors.primary).toBe('#7F1D1D');
+    expect(themeService.currentTokens().colors.primary).toBe('#1B3A4B');
 
-    // Switch to corporate-enterprise
+    // Switch to corporate-enterprise (Ledger)
     themeService.setPreset('corporate-enterprise');
     expect(themeService.currentPreset()).toBe('corporate-enterprise');
-    expect(themeService.currentTokens().colors.primary).toBe('#2563EB');
+    expect(themeService.currentTokens().colors.primary).toBe('#0D5C63');
   });
 
   it('should manage 5 predefined Design.md presets', () => {

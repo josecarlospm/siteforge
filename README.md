@@ -14,7 +14,7 @@ This repository contains the deliverables for **[SF-03] Angular 19+ Scaffolding 
 
 2. **Autonomous Scaffolding Engine** (`scaffolding-engine/`):
    - Programmatic TypeScript engine and CLI (`siteforge-scaffold`).
-   - Design Token Compiler: compiles `Design.md` aesthetic presets (`warm-organic`, `neo-brutalist`, `clean-editorial`, `modern-saas-dark`, `corporate-enterprise`) into CSS Custom Properties (`:root[data-theme="..."]`).
+   - Design Token Compiler: compiles root `Design.md` aesthetic presets (`warm-organic` / Greenhouse Lab, `neo-brutalist` / Signal Block, `clean-editorial` / Gallery Press, `modern-saas-dark` / Forge Night, `corporate-enterprise` / Ledger) into CSS Custom Properties (`:root[data-theme="..."]`).
    - Full scaffolding support across all 6 archetypes:
      - `learning_platform`
      - `blog`

@@ -21,8 +21,8 @@ export class FactoryStateService {
   readonly siteName = signal<string>('PlantCare Academy');
   readonly tagline = signal<string>('Cultivate your indoor jungle with botanical masterclasses');
   readonly description = signal<string>('Interactive watering diagnostics, lighting calculators, and masterclasses taught by experts.');
-  readonly primaryColor = signal<string>('#2D5A27');
-  readonly secondaryColor = signal<string>('#8FBC8F');
+  readonly primaryColor = signal<string>('#145C45');
+  readonly secondaryColor = signal<string>('#2F8F6B');
   readonly githubRepo = signal<string>('plantcare-academy-web');
   readonly vercelProject = signal<string>('plantcare-academy');
   readonly githubConnected = signal<boolean>(true);

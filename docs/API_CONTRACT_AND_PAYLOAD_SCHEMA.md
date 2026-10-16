@@ -34,7 +34,7 @@ The SiteForge pipeline receives a JSON payload specifying the website characteri
 | `theme.name` | `string` | e.g. `"PlantCare Academy"` | Brand / commercial site name |
 | `theme.tagline` | `string` | e.g. `"Master the art of indoor gardening"` | Marketing tagline |
 | `theme.description`| `string` | e.g. `"Step-by-step masterclasses on watering..."` | Meta description and hero copy |
-| `theme.branding.primaryColor` | `string` | Hex format (e.g. `"#2D5A27"`) | Optional primary brand accent override |
+| `theme.branding.primaryColor` | `string` | Hex format (e.g. `"#145C45"`) | Optional primary brand accent override |
 | `theme.branding.secondaryColor` | `string` | Hex format (e.g. `"#E8F0E6"`) | Optional surface accent override |
 | `theme.content` | `object` | Archetype-specific entity collections | Domain data items (courses, lessons, posts) |
 | `integrations.github.repoName` | `string` | e.g. `"plantcare-academy-web"` | Target repository name on GitHub |
