@@ -85,6 +85,19 @@ describe('ProjectGenerator', () => {
 
     const tokensCss = fs.readFileSync(path.join(targetDir, 'src/design-tokens.css'), 'utf-8');
     expect(tokensCss).toContain('--color-primary: #2D5A27;');
+
+    // Verify learning_platform comprehensive template structure
+    const archetypeComponent = fs.readFileSync(
+      path.join(targetDir, 'src/app/archetype-view.component.ts'),
+      'utf-8'
+    );
+    expect(archetypeComponent).toContain('PlantCare Academy');
+    expect(archetypeComponent).toContain('Interactive Lesson Detail Preview');
+    expect(archetypeComponent).toContain('video-player-container');
+    expect(archetypeComponent).toContain('Foot-Candles & Light Calculator');
+    expect(archetypeComponent).toContain('Watering & Substrate Dynamic Matrix');
+    expect(archetypeComponent).toContain('Seasonal Plant Care Alerts');
+    expect(archetypeComponent).toContain('guideProgressPercent');
   });
 
   it('should scaffold projects across all 6 archetypes', () => {

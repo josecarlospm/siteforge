@@ -27,7 +27,7 @@ export class GitHubPipeline {
     if (!validation.success) {
       const errorMsg = (validation as any).errors
         ? (validation as any).errors.map((e: any) => `${e.path}: ${e.message}`).join(', ')
-        : 'Invalid payload';
+        : (validation as any).error?.message || 'Invalid payload';
       throw new Error(`Payload validation failed: ${errorMsg}`);
     }
 
@@ -40,7 +40,7 @@ export class GitHubPipeline {
       'siteforge-angular-app';
     const defaultBranch =
       options.defaultBranch ||
-      validPayload.integrations?.github?.defaultBranch ||
+      (validPayload.integrations?.github as any)?.defaultBranch ||
       'main';
 
     // 2. Setup staging workspace directory
@@ -64,10 +64,12 @@ export class GitHubPipeline {
     GitOperations.ensureGitignore(stagingDir);
 
     // 5. Format commit message & create initial commit
-    const commitMessage = CommitFormatter.formatInitialCommit(validPayload, {
-      filesCount: scaffoldResult.filesGenerated.length,
-      projectName: repoName,
-    });
+    const commitMessage = options.commitMessageOverride
+      ? { fullMessage: options.commitMessageOverride }
+      : CommitFormatter.formatInitialCommit(validPayload, {
+          filesCount: scaffoldResult.filesGenerated.length,
+          projectName: repoName,
+        });
     const commitResult = GitOperations.stageAndCommit(
       stagingDir,
       commitMessage.fullMessage,

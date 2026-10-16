@@ -13,6 +13,7 @@ function parseArgs() {
     isPrivate: undefined,
     noPush: false,
     outputDir: '',
+    commitMessage: '',
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -31,6 +32,8 @@ function parseArgs() {
       options.noPush = true;
     } else if (arg === '--output' && args[i + 1]) {
       options.outputDir = args[++i];
+    } else if ((arg === '--commit-message' || arg === '-m') && args[i + 1]) {
+      options.commitMessage = args[++i];
     }
   }
 
@@ -69,6 +72,7 @@ async function main() {
       isPrivateOverride: options.isPrivate,
       push: !options.noPush,
       workingDirectory: options.outputDir || undefined,
+      commitMessageOverride: options.commitMessage || undefined,
     });
 
     console.log(JSON.stringify(result, null, 2));
