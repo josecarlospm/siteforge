@@ -8,8 +8,9 @@ import { FactoryStateService } from '../services/factory-state.service';
   template: `
     <section class="integrations-section" aria-labelledby="integrations-heading">
       <div class="section-header">
+        <p class="section-kicker">04 · Integrations</p>
         <h2 class="section-title" id="integrations-heading">GitHub & Vercel</h2>
-        <p class="section-subtitle">Connect repo and host for continuous deployment</p>
+        <p class="section-subtitle">Connect repository and host for continuous deployment</p>
       </div>
 
       <div class="fields-grid">
@@ -65,11 +66,19 @@ import { FactoryStateService } from '../services/factory-state.service';
     .section-header {
       margin-bottom: var(--spacing-5, 20px);
     }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
+    }
     .section-title {
-      font-size: var(--text-xl, 1.25rem);
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
-      margin-bottom: var(--spacing-1, 4px);
+      margin: 0 0 4px;
     }
     .section-subtitle {
       font-size: var(--text-sm, 0.875rem);

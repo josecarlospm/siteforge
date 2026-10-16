@@ -121,8 +121,10 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
 
     expect(compiled.querySelector('.portal-hero')).toBeTruthy();
     expect(compiled.querySelector('.hero-brand')).toBeTruthy();
+    expect(compiled.querySelector('.hero-product')).toBeTruthy();
     expect(compiled.querySelector('.hero-stats')).toBeNull();
     expect(compiled.querySelector('.stat-pill')).toBeNull();
+    expect(compiled.querySelector('#factory-studio')).toBeTruthy();
     expect(compiled.querySelector('sf-archetype-selector')).toBeTruthy();
     expect(compiled.querySelector('sf-preset-selector')).toBeTruthy();
     expect(compiled.querySelector('sf-theme-editor')).toBeTruthy();
@@ -136,3 +138,4 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
     expect(compiled.textContent).toContain('designPreset');
   });
 });
+

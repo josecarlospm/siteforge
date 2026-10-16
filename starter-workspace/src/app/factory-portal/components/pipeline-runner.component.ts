@@ -8,9 +8,10 @@ import { FactoryStateService } from '../services/factory-state.service';
       <div class="runner-panel">
         <div class="runner-header">
           <div>
+            <p class="section-kicker">05 · Orchestration</p>
             <h2 class="runner-title" id="runner-heading">Run factory</h2>
             <p class="runner-subtitle">
-              Validate payload, scaffold Angular, push to GitHub, deploy to Vercel
+              Validate → scaffold → GitHub sync → Vercel deploy → live verify
             </p>
           </div>
 
@@ -126,10 +127,19 @@ import { FactoryStateService } from '../services/factory-state.service';
       gap: var(--spacing-4, 16px);
       margin-bottom: var(--spacing-6, 24px);
     }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
+    }
     .runner-title {
-      font-size: var(--text-xl, 1.25rem);
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
+      margin: 0;
     }
     .runner-subtitle {
       font-size: var(--text-sm, 0.875rem);

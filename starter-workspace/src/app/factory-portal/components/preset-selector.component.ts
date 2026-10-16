@@ -7,9 +7,12 @@ import { DesignPresetName, DESIGN_PRESETS } from '../../core/models/design-token
   template: `
     <section class="preset-section" aria-labelledby="preset-heading">
       <div class="section-header">
-        <h2 class="section-title" id="preset-heading">Design preset</h2>
+        <div>
+          <p class="section-kicker">02 · Design.md</p>
+          <h2 class="section-title" id="preset-heading">Aesthetic preset</h2>
+        </div>
         <p class="section-subtitle">
-          Live previews mapped to API <code>designPreset</code> values from Design.md
+          Live previews mapped to API <code>designPreset</code>
         </p>
       </div>
 
@@ -30,30 +33,23 @@ import { DesignPresetName, DESIGN_PRESETS } from '../../core/models/design-token
               [style.border-width]="preset.shape.borderWidth"
               [style.border-radius]="preset.shape.radiusCard"
               [style.box-shadow]="preset.elevation.shadowCard"
+              [style.font-family]="preset.typography.fontHeading"
             >
               <div
-                class="preview-nav"
+                class="preview-bar"
                 [style.background]="preset.colors.surface"
                 [style.border-bottom-color]="preset.colors.border"
               >
                 <span
-                  class="preview-mark"
+                  class="preview-logo"
                   [style.background]="preset.colors.primary"
                   [style.border-radius]="preset.shape.radiusBtn"
                 ></span>
-                <span
-                  class="preview-line"
-                  [style.background]="preset.colors.textMuted"
-                ></span>
+                <span class="preview-navline" [style.background]="preset.colors.textMuted"></span>
+                <span class="preview-navline short" [style.background]="preset.colors.textMuted"></span>
               </div>
-              <div class="preview-body">
-                <span
-                  class="preview-title"
-                  [style.color]="preset.colors.textMain"
-                  [style.font-family]="preset.typography.fontHeading"
-                >
-                  Aa
-                </span>
+              <div class="preview-hero" [style.background]="preset.colors.surfaceMuted">
+                <span class="preview-type" [style.color]="preset.colors.textMain">Aa</span>
                 <span
                   class="preview-cta"
                   [style.background]="preset.colors.primary"
@@ -61,15 +57,23 @@ import { DesignPresetName, DESIGN_PRESETS } from '../../core/models/design-token
                   [style.border-radius]="preset.shape.radiusBtn"
                   [style.box-shadow]="preset.elevation.shadowButton"
                 ></span>
-                <span
-                  class="preview-accent"
-                  [style.background]="preset.colors.accent"
-                ></span>
+              </div>
+              <div class="preview-strip">
+                <span [style.background]="preset.colors.primary"></span>
+                <span [style.background]="preset.colors.secondary"></span>
+                <span [style.background]="preset.colors.accent"></span>
+                <span [style.background]="preset.colors.surface"></span>
+                <span [style.background]="preset.colors.textMain"></span>
               </div>
             </div>
 
             <div class="preset-meta">
-              <span class="preset-name">{{ preset.displayName }}</span>
+              <div class="meta-top">
+                <span class="preset-name">{{ preset.displayName }}</span>
+                @if (selectedPreset() === preset.name) {
+                  <span class="selected-mark">Selected</span>
+                }
+              </div>
               <code class="api-key">designPreset: "{{ preset.name }}"</code>
               <p class="preset-desc">{{ preset.description }}</p>
             </div>
@@ -80,17 +84,32 @@ import { DesignPresetName, DESIGN_PRESETS } from '../../core/models/design-token
   `,
   styles: [`
     .section-header {
-      margin-bottom: var(--spacing-5, 20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
     }
     .section-title {
-      font-size: var(--text-xl, 1.25rem);
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
-      margin-bottom: var(--spacing-1, 4px);
+      margin: 0;
     }
     .section-subtitle {
-      font-size: var(--text-sm, 0.875rem);
+      font-size: 0.85rem;
       color: var(--color-text-muted);
+      margin: 0;
+      max-width: 28rem;
     }
     .section-subtitle code {
       font-family: var(--font-mono);
@@ -99,92 +118,108 @@ import { DesignPresetName, DESIGN_PRESETS } from '../../core/models/design-token
     }
     .preset-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: var(--spacing-4, 16px);
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px;
     }
     .preset-card {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-3, 12px);
+      gap: 12px;
       text-align: left;
       padding: 0;
       background: transparent;
       border: none;
       cursor: pointer;
       color: inherit;
-      transition: transform var(--transition-fast, 150ms ease);
+      transition: transform 160ms ease;
     }
-    .preset-card:hover {
-      transform: translateY(-2px);
+    .preset-card:hover { transform: translateY(-3px); }
+    .preset-card:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 4px;
     }
     .preset-card.selected .preset-preview {
       outline: 2px solid var(--color-primary);
       outline-offset: 3px;
     }
     .preset-preview {
-      height: 112px;
+      height: 148px;
       border-style: solid;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
-    .preview-nav {
+    .preview-bar {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       padding: 8px 10px;
       border-bottom: 1px solid;
     }
-    .preview-mark {
-      width: 14px;
-      height: 14px;
+    .preview-logo {
+      width: 12px;
+      height: 12px;
       flex-shrink: 0;
     }
-    .preview-line {
-      height: 4px;
-      width: 40%;
-      opacity: 0.45;
+    .preview-navline {
+      height: 3px;
+      width: 28%;
+      opacity: 0.4;
       border-radius: 1px;
     }
-    .preview-body {
+    .preview-navline.short { width: 14%; }
+    .preview-hero {
       flex: 1;
       display: flex;
       align-items: flex-end;
-      gap: 8px;
-      padding: 12px 10px;
+      justify-content: space-between;
+      padding: 14px 12px;
     }
-    .preview-title {
-      font-size: 1.5rem;
+    .preview-type {
+      font-size: 1.75rem;
       font-weight: 700;
       line-height: 1;
-      margin-right: auto;
+      letter-spacing: -0.04em;
     }
     .preview-cta {
-      width: 36px;
-      height: 12px;
+      width: 42px;
+      height: 14px;
     }
-    .preview-accent {
-      width: 8px;
-      height: 12px;
-      opacity: 0.85;
+    .preview-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: 8px;
+    }
+    .preview-strip span { display: block; }
+    .meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
     }
     .preset-name {
-      display: block;
       font-weight: 650;
-      font-size: var(--text-sm, 0.875rem);
+      font-size: 0.875rem;
       color: var(--color-text-main);
+    }
+    .selected-mark {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
     .api-key {
       display: block;
       margin-top: 4px;
       font-family: var(--font-mono);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--color-accent);
       word-break: break-all;
     }
     .preset-desc {
       margin-top: 6px;
-      font-size: var(--text-xs, 0.75rem);
+      font-size: 0.72rem;
       color: var(--color-text-muted);
       line-height: 1.4;
     }

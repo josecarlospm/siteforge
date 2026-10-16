@@ -6,20 +6,20 @@
 }
 
 .sf-studio-nav {
-  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
-  border-bottom: var(--border-width) solid var(--color-border);
+  background: color-mix(in srgb, #0A0D12 78%, transparent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(var(--backdrop-blur, 8px));
+  backdrop-filter: blur(14px) saturate(1.2);
 }
 
 .nav-inner {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   height: 56px;
-  gap: 16px;
+  gap: 20px;
 }
 
 .nav-brand {
@@ -35,32 +35,34 @@
 }
 
 .brand-mark {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   background: var(--color-primary);
   border-radius: 2px;
-  box-shadow: 0 0 12px rgba(224, 122, 61, 0.45);
+  box-shadow: 0 0 16px rgba(224, 122, 61, 0.55);
 }
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--color-text-main);
 }
 
 .nav-tabs {
   display: flex;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
+  gap: 4px;
 }
 
 .nav-tab-btn {
   padding: 8px 12px;
-  border-radius: var(--radius-btn);
-  font-size: var(--text-xs, 0.75rem);
+  border-radius: 4px;
+  font-size: 0.75rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--color-text-muted);
   cursor: pointer;
   transition: color 120ms ease, background-color 120ms ease;
@@ -74,7 +76,19 @@
 
 .nav-tab-btn.active {
   color: var(--color-text-main);
-  background: var(--color-surface-muted);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-meta {
+  justify-self: end;
+}
+
+.nav-meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 .telemetry-container {
@@ -84,15 +98,20 @@
 
 @media (max-width: 720px) {
   .nav-inner {
+    grid-template-columns: 1fr;
     height: auto;
-    min-height: 56px;
-    flex-wrap: wrap;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 10px;
   }
 
   .nav-tabs {
-    width: 100%;
+    justify-content: flex-start;
     overflow-x: auto;
+    width: 100%;
+  }
+
+  .nav-meta {
+    display: none;
   }
 }

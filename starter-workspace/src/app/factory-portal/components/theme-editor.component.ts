@@ -10,8 +10,9 @@ import { FactorySiteType } from '../models/factory.model';
     <section class="theme-section" aria-labelledby="theme-heading">
       <div class="section-header">
         <div class="title-wrap">
-          <h2 class="section-title" id="theme-heading">Theme & content</h2>
-          <p class="section-subtitle">What the site is about — name, topic, brand colors</p>
+          <p class="section-kicker">03 · Theme</p>
+          <h2 class="section-title" id="theme-heading">Content & branding</h2>
+          <p class="section-subtitle">Domain topic, commercial name, and brand color overrides</p>
         </div>
 
         <div class="sample-row">
@@ -123,11 +124,19 @@ import { FactorySiteType } from '../models/factory.model';
       gap: var(--spacing-3, 12px);
       margin-bottom: var(--spacing-5, 20px);
     }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
+    }
     .section-title {
-      font-size: var(--text-xl, 1.25rem);
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       color: var(--color-text-main);
-      margin-bottom: var(--spacing-1, 4px);
+      margin: 0 0 4px;
     }
     .section-subtitle {
       font-size: var(--text-sm, 0.875rem);

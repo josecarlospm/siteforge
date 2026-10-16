@@ -21,7 +21,7 @@
           [class.active]="activeTab() === 'showcase'"
           (click)="setTab('showcase')"
         >
-          PlantCare reference
+          Reference
         </button>
         <button
           type="button"
@@ -29,9 +29,13 @@
           [class.active]="activeTab() === 'telemetry'"
           (click)="setTab('telemetry')"
         >
-          CTO diagnostics
+          Diagnostics
         </button>
       </nav>
+
+      <div class="nav-meta" aria-hidden="true">
+        <span class="nav-meta-label">Enterprise factory</span>
+      </div>
     </div>
   </header>
 
