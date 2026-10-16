@@ -163,6 +163,7 @@ export class ProjectGenerator {
       title: payload.theme.name,
       tagline: payload.theme.tagline,
       description: payload.theme.description,
+      content: payload.theme.content,
     });
     writeFile('src/app/archetype-view.component.ts', archetypeComponent);
 

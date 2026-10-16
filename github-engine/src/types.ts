@@ -50,6 +50,7 @@ export interface GitHubSyncOptions {
   dryRun?: boolean;
   push?: boolean;
   cleanupStaging?: boolean;
+  commitMessageOverride?: string;
 }
 
 export interface GitHubSyncResult {
