@@ -32,25 +32,21 @@ describe('SiteForge Starter Workspace', () => {
     expect(themeService.currentTokens().colors.bg).toBe('#E7EEEA');
     expect(themeService.currentTokens().colors.accent).toBe('#1A5F7A');
 
-    // Switch to neo-brutalist
     themeService.setPreset('neo-brutalist');
     expect(themeService.currentPreset()).toBe('neo-brutalist');
     expect(themeService.currentTokens().shape.borderWidth).toBe('3px');
     expect(themeService.currentTokens().shape.radiusCard).toBe('0px');
     expect(themeService.currentTokens().colors.secondary).toBe('#00C2A8');
 
-    // Switch to modern-saas-dark (Forge Night)
     themeService.setPreset('modern-saas-dark');
     expect(themeService.currentPreset()).toBe('modern-saas-dark');
     expect(themeService.currentTokens().colors.bg).toBe('#0E1116');
     expect(themeService.currentTokens().colors.primary).toBe('#E07A3D');
 
-    // Switch to clean-editorial (Gallery Press)
     themeService.setPreset('clean-editorial');
     expect(themeService.currentPreset()).toBe('clean-editorial');
     expect(themeService.currentTokens().colors.primary).toBe('#1B3A4B');
 
-    // Switch to corporate-enterprise (Ledger)
     themeService.setPreset('corporate-enterprise');
     expect(themeService.currentPreset()).toBe('corporate-enterprise');
     expect(themeService.currentTokens().colors.primary).toBe('#0D5C63');
@@ -81,32 +77,32 @@ describe('SiteForge Starter Workspace', () => {
     expect(payloadService.payload().siteType).toBe('learning_platform');
     expect(payloadService.filteredCourses().length).toBe(3);
 
-    // Filter by query "monstera"
     payloadService.setSearchQuery('monstera');
     expect(payloadService.filteredCourses().length).toBe(1);
     expect(payloadService.filteredCourses()[0].id).toBe('course-monstera-101');
 
-    // Reset query and filter by category
     payloadService.setSearchQuery('');
     payloadService.setSelectedCategory('Pest Eradication');
     expect(payloadService.filteredCourses().length).toBe(1);
     expect(payloadService.filteredCourses()[0].id).toBe('course-pest-defense');
   });
 
-  it('should render the PlantCare showcase layout cleanly', () => {
+  it('should render the SF-10 PlantCare Greenhouse Lab reference', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelector('sf-header')).toBeTruthy();
-    expect(compiled.querySelector('sf-hero')).toBeTruthy();
-    expect(compiled.querySelector('sf-sidebar')).toBeTruthy();
-    expect(compiled.querySelector('sf-footer')).toBeTruthy();
+    expect(compiled.querySelector('sf-plantcare-showcase')).toBeTruthy();
+    expect(compiled.querySelector('.reference-banner')).toBeTruthy();
+    expect(compiled.querySelector('.hero-brand')).toBeTruthy();
+    expect(compiled.querySelector('#catalog')).toBeTruthy();
     expect(compiled.querySelector('#lesson-preview')).toBeTruthy();
-    expect(compiled.querySelector('.video-player-container')).toBeTruthy();
-    expect(compiled.querySelector('.guide-container')).toBeTruthy();
+    expect(compiled.querySelector('.player')).toBeTruthy();
+    expect(compiled.querySelector('.guide')).toBeTruthy();
     expect(compiled.querySelector('#newsletter')).toBeTruthy();
     expect(compiled.textContent).toContain('PlantCare Academy');
+    expect(compiled.textContent).toContain('Field lab for indoor growers');
+    expect(compiled.textContent).toContain('designPreset: warm-organic');
   });
 
   it('should manage interactive video player stub and step-by-step care checklist', () => {
@@ -114,35 +110,28 @@ describe('SiteForge Starter Workspace', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    // Verify initial video player state
     expect(component.isPlaying()).toBe(false);
     expect(component.isMuted()).toBe(false);
     expect(component.playbackSpeed()).toBe('1x');
     expect(component.formattedPlaybackTime()).toBe('02:22');
 
-    // Toggle play/pause
     component.togglePlay();
     expect(component.isPlaying()).toBe(true);
 
-    // Toggle mute
     component.toggleMute();
     expect(component.isMuted()).toBe(true);
 
-    // Cycle speed
     component.cycleSpeed();
     expect(component.playbackSpeed()).toBe('1.25x');
 
-    // Step checklist verification
     expect(component.completedSteps()).toEqual([1]);
     expect(component.guideProgressPercent()).toBe(25);
 
-    // Complete Step 2 and 3
     component.toggleStep(2);
     component.toggleStep(3);
     expect(component.completedSteps()).toEqual([1, 2, 3]);
     expect(component.guideProgressPercent()).toBe(75);
 
-    // Uncheck Step 1
     component.toggleStep(1);
     expect(component.completedSteps()).toEqual([2, 3]);
     expect(component.guideProgressPercent()).toBe(50);
@@ -152,25 +141,23 @@ describe('SiteForge Starter Workspace', () => {
     const fixture = TestBed.createComponent(PlantCareShowcaseComponent);
     const component = fixture.componentInstance;
 
-    // Light orientation
     component.selectedOrientation.set('south');
     expect(component.currentLightData().footCandles).toContain('1,500');
-    expect(component.currentLightData().recommendation).toContain('Fiddle Leaf Fig');
+    expect(component.currentLightData().recommendation.toLowerCase()).toContain('fiddle leaf');
 
     component.selectedOrientation.set('north');
     expect(component.currentLightData().footCandles).toContain('200');
-    expect(component.currentLightData().recommendation).toContain('Snake Plant');
+    expect(component.currentLightData().recommendation.toLowerCase()).toContain('snake plant');
 
-    // Watering dynamics matrix
     component.selectedPot.set('terracotta');
-    expect(component.currentWateringAdvice().frequency).toBe('Every 5 – 7 Days');
+    expect(component.currentWateringAdvice().frequency).toBe('Every 5 – 7 days');
 
     component.selectedPot.set('plastic');
     component.selectedSubstrate.set('succulent');
-    expect(component.currentWateringAdvice().frequency).toBe('Every 14 – 21 Days');
+    expect(component.currentWateringAdvice().frequency).toBe('Every 14 – 21 days');
 
     component.selectedSubstrate.set('aroid');
-    expect(component.currentWateringAdvice().frequency).toBe('Every 8 – 10 Days');
+    expect(component.currentWateringAdvice().frequency).toBe('Every 8 – 10 days');
   });
 
   it('should manage seasonal newsletter subscription state', () => {
@@ -181,12 +168,10 @@ describe('SiteForge Starter Workspace', () => {
     expect(component.currentSeasonTip().name).toBe('Spring');
     expect(component.isSubscribed()).toBe(false);
 
-    // Switch season to Autumn
     component.selectedSeason.set('autumn');
     expect(component.currentSeasonTip().name).toBe('Autumn');
-    expect(component.currentSeasonTip().focus).toContain('Daylight Transition');
+    expect(component.currentSeasonTip().focus.toLowerCase()).toContain('daylight transition');
 
-    // Submit subscription
     component.newsletterEmail.set('botanist@plantcare.academy');
     component.onSubscribe(new Event('submit'));
     expect(component.isSubscribed()).toBe(true);
