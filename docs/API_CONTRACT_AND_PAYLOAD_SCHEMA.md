@@ -39,7 +39,7 @@ The SiteForge pipeline receives a JSON payload specifying the website characteri
 | `theme.content` | `object` | Archetype-specific entity collections | Domain data items (courses, lessons, posts) |
 | `integrations.github.repoName` | `string` | e.g. `"plantcare-academy-web"` | Target repository name on GitHub |
 | `integrations.github.isPrivate` | `boolean` | `true` \| `false` | Whether GitHub repo is private |
-| `integrations.vercel.projectName` | `string` | e.g. `"plantcare-academy"` | Target Vercel project name |
+| `integrations.vercel.projectName` | `string` | e.g. `"plantcare-academy-web"` | Target Vercel project slug (must match a real project alias) |
 | `integrations.vercel.teamId` | `string` | Optional team ID | Vercel team scope |
 
 ---

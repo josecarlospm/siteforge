@@ -5,10 +5,10 @@ import { EnvManager } from '../config/env-manager.js';
 import { VercelConfigManager } from '../config/vercel-config.js';
 import { DeploymentPoller } from '../deployment/deployment-poller.js';
 import { DeploymentTrigger } from '../deployment/deployment-trigger.js';
+import { LiveUrlResolver } from '../deployment/live-url-resolver.js';
 import { MetadataCollector } from '../deployment/metadata-collector.js';
 import {
   VercelDeployment,
-  VercelDeploymentMetadata,
   VercelDeploymentResult,
   VercelPipelineOptions,
   VercelProject,
@@ -165,56 +165,13 @@ export class VercelPipeline {
         });
       } catch (err: any) {
         if (err?.status === 403 || err?.message?.includes("don't have permission")) {
-          if (options.onProgress) {
-            options.onProgress({
-              phase: 'PROJECT_CREATION',
-              message: `Vercel token lacks project:create permissions on team. Proceeding with sandbox pipeline verification for "${projectName}"`,
-              elapsedMs: Date.now() - startTime,
-            });
-          }
-          const sandboxProject: VercelProject = {
-            id: `prj_${Math.random().toString(36).substring(2, 10)}`,
-            name: projectName,
-            framework: 'angular',
-            buildCommand: 'npm run build',
-            outputDirectory: `dist/${projectName}/browser`,
-            link: githubRepo ? { type: 'github', repo: githubRepo } : undefined,
-            targets: {
-              production: {
-                alias: [`${projectName}.vercel.app`],
-              },
-            },
-          };
-
-          const sandboxDeployment: VercelDeployment = {
-            id: `dpl_${Math.random().toString(36).substring(2, 12)}`,
-            name: projectName,
-            url: `${projectName}.vercel.app`,
-            readyState: 'READY',
-            target,
-            alias: [`${projectName}.vercel.app`],
-            createdAt: startTime,
-            buildingAt: startTime + 1500,
-            readyAt: startTime + 18500,
-            meta: {
-              githubCommitSha: commitSha || 'f3c4ebfda411c5ae349e0cafbbdc383683aad1b0',
-            },
-          };
-
-          const metadata = MetadataCollector.collect({
-            project: sandboxProject,
-            deployment: sandboxDeployment,
-            siteType,
-            designPreset,
-            commitSha,
-            wallClockDurationMs: 18500,
-          });
-
-          return {
-            success: true,
-            metadata,
-            dryRun: false,
-          };
+          throw new Error(
+            `Vercel token lacks project:create permissions for "${projectName}". ` +
+              'Refusing to record an unverified fallback alias as a production URL. ' +
+              'Create a Vercel token with project create/deploy scopes (see docs/OWNER_GITHUB_VERCEL_CHECKLIST.md), ' +
+              'or pre-create the project and re-run with a token that can read and deploy it. ' +
+              `Original error: ${err?.message || err}`
+          );
         }
         throw err;
       }
@@ -301,7 +258,22 @@ export class VercelPipeline {
     // Refresh project details to capture latest production target aliases
     const updatedProject = (await client.getProject(project.id)) || project;
 
-    // 8. Record and collect deployment metadata
+    // 8. Verify a publicly reachable live URL before recording metadata
+    if (options.onProgress) {
+      options.onProgress({
+        phase: 'LIVE_URL_VERIFICATION',
+        message: 'Verifying public HTTPS access (rejecting SSO / missing aliases)',
+        elapsedMs: Date.now() - startTime,
+        deploymentId: completedDeployment.id,
+      });
+    }
+
+    const verified = await LiveUrlResolver.resolveVerified(
+      updatedProject,
+      completedDeployment
+    );
+
+    // 9. Record and collect deployment metadata (liveUrl must be verified)
     const metadata = MetadataCollector.collect({
       project: updatedProject,
       deployment: completedDeployment,
@@ -310,6 +282,7 @@ export class VercelPipeline {
       commitSha,
       wallClockDurationMs: Date.now() - startTime,
     });
+    metadata.liveUrl = verified.liveUrl;
 
     return {
       success: true,

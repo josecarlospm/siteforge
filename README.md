@@ -72,16 +72,28 @@ This repository contains the deliverables for **[SF-03] Angular 19+ Scaffolding 
 
 ---
 
+## Live production (public)
+
+| Surface | URL |
+|---|---|
+| SiteForge factory | https://siteforge-chi-nine.vercel.app |
+| PlantCare Academy | https://plantcare-academy-web.vercel.app |
+
+Owner setup for GitHub ↔ Vercel tokens, aliases, and Deployment Protection: [`docs/OWNER_GITHUB_VERCEL_CHECKLIST.md`](./docs/OWNER_GITHUB_VERCEL_CHECKLIST.md).
+
+**Node:** `^22.22.3 || ^24.15.0 || >=26` (see root `package.json` `engines`).
+
 ## Verification & Testing
 
 ### 1. Run All Tests
 ```bash
-npm run test:engine     # Runs scaffolding-engine unit tests (9/9 pass)
-npm run test:starter    # Runs starter-workspace Angular unit tests (5/5 pass)
-npm run test:github     # Runs github-engine unit tests (7/7 pass)
-npm run test:vercel     # Runs vercel-pipeline unit & orchestration tests (22/22 pass)
-npm run test:mcp        # Runs live Angular CLI MCP integration tests (3/3 pass)
-npm run test:all        # Runs entire test suite across all 6 workspaces
+npm test                # Builds library workspaces first, then runs all package tests
+npm run test:engine     # Runs scaffolding-engine unit tests
+npm run test:starter    # Runs starter-workspace Angular unit tests
+npm run test:github     # Runs github-engine unit tests
+npm run test:vercel     # Runs vercel-pipeline unit & orchestration tests
+npm run test:mcp        # Runs live Angular CLI MCP integration tests
+npm run test:all        # Alias for npm test
 ```
 
 ### 2. Build the Packages & Workspace

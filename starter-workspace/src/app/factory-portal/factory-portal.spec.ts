@@ -31,7 +31,7 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
     expect(stateService.designPreset()).toBe('warm-organic');
     expect(stateService.siteName()).toBe('PlantCare Academy');
     expect(stateService.githubRepo()).toBe('plantcare-academy-web');
-    expect(stateService.vercelProject()).toBe('plantcare-academy');
+    expect(stateService.vercelProject()).toBe('plantcare-academy-web');
 
     const payload = stateService.payloadObject();
     expect(payload.version).toBe('1.0.0');

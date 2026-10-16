@@ -113,7 +113,7 @@
       "autoInit": true
     },
     "vercel": {
-      "projectName": "plantcare-academy",
+      "projectName": "plantcare-academy-web",
       "framework": "angular",
       "envVariables": {
         "NEXT_PUBLIC_APP_ENV": "production",
