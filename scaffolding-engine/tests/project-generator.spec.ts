@@ -60,10 +60,20 @@ describe('ProjectGenerator', () => {
     // Verify critical files exist
     expect(fs.existsSync(path.join(targetDir, 'package.json'))).toBe(true);
     expect(fs.existsSync(path.join(targetDir, 'angular.json'))).toBe(true);
+    expect(fs.existsSync(path.join(targetDir, 'vercel.json'))).toBe(true);
     expect(fs.existsSync(path.join(targetDir, 'src/main.ts'))).toBe(true);
     expect(fs.existsSync(path.join(targetDir, 'src/design-tokens.css'))).toBe(true);
     expect(fs.existsSync(path.join(targetDir, 'src/app/app.config.ts'))).toBe(true);
     expect(fs.existsSync(path.join(targetDir, 'src/app/archetype-view.component.ts'))).toBe(true);
+
+    // Verify Vercel deployment configuration
+    const vercelConfig = JSON.parse(
+      fs.readFileSync(path.join(targetDir, 'vercel.json'), 'utf-8')
+    );
+    expect(vercelConfig.framework).toBe('angular');
+    expect(vercelConfig.outputDirectory).toBe('dist/plantcare-academy-web/browser');
+    expect(vercelConfig.cleanUrls).toBe(true);
+    expect(vercelConfig.routes).toHaveLength(2);
 
     // Verify zoneless change detection and standalone architecture
     const appConfig = fs.readFileSync(path.join(targetDir, 'src/app/app.config.ts'), 'utf-8');

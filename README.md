@@ -78,23 +78,35 @@ This repository contains the deliverables for **[SF-03] Angular 19+ Scaffolding 
 ```bash
 npm run test:engine     # Runs scaffolding-engine unit tests (9/9 pass)
 npm run test:starter    # Runs starter-workspace Angular unit tests (5/5 pass)
+npm run test:github     # Runs github-engine unit tests (7/7 pass)
+npm run test:vercel     # Runs vercel-pipeline unit & orchestration tests (22/22 pass)
 npm run test:mcp        # Runs live Angular CLI MCP integration tests (3/3 pass)
+npm run test:all        # Runs entire test suite across all 6 workspaces
 ```
 
-### 2. Build the Starter Workspace
+### 2. Build the Packages & Workspace
 ```bash
-npm run build --workspace=starter-workspace
-# Compiles with 0 errors and 0 warnings
+npm run build           # Compiles all packages and starter workspace
+npm run build:vercel    # Compiles @siteforge/vercel-pipeline
 ```
 
-### 3. Test Scaffolding from JSON Payload
+### 3. Deploy to Vercel (Zero-Config Orchestrator)
+```bash
+# Dry run verification
+npm run deploy:vercel -- --payload samples/plantcare-academy.payload.json --dry-run
+
+# Production live deployment
+npm run deploy:vercel -- --payload samples/plantcare-academy.payload.json
+```
+
+### 4. Test Scaffolding from JSON Payload
 ```bash
 node scaffolding-engine/bin/siteforge-scaffold.js \
   --payload samples/plantcare-academy.payload.json \
   --output generated/plantcare-web
 ```
 
-### 4. Query Angular CLI MCP Server
+### 5. Query Angular CLI MCP Server
 ```bash
 node mcp-harness/bin/runner.js tools
 node mcp-harness/bin/runner.js standards

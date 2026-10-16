@@ -4,19 +4,28 @@
   "description": "SiteForge — The Autonomous Angular Web Factory",
   "private": true,
   "workspaces": [
-    "starter-workspace",
+    "payload-schema",
     "scaffolding-engine",
-    "mcp-harness"
+    "github-engine",
+    "vercel-pipeline",
+    "mcp-harness",
+    "starter-workspace"
   ],
   "scripts": {
-    "build": "npm run build --workspace=scaffolding-engine && npm run build --workspace=mcp-harness && npm run build --workspace=starter-workspace",
+    "build": "npm run build --workspace=payload-schema && npm run build --workspace=scaffolding-engine && npm run build --workspace=github-engine && npm run build --workspace=vercel-pipeline && npm run build --workspace=mcp-harness && npm run build --workspace=starter-workspace",
     "build:all": "npm run build",
-    "test": "npm run test --workspace=scaffolding-engine && npm run test --workspace=mcp-harness && npm run test --workspace=starter-workspace",
+    "build:vercel": "npm run build --workspace=vercel-pipeline",
+    "test": "npm run test --workspace=payload-schema && npm run test --workspace=scaffolding-engine && npm run test --workspace=github-engine && npm run test --workspace=vercel-pipeline && npm run test --workspace=mcp-harness && npm run test --workspace=starter-workspace",
     "test:all": "npm run test",
-    "test:starter": "npm run test --workspace=starter-workspace",
+    "test:payload": "npm run test --workspace=payload-schema",
     "test:engine": "npm run test --workspace=scaffolding-engine",
+    "test:github": "npm run test --workspace=github-engine",
+    "test:vercel": "npm run test --workspace=vercel-pipeline",
     "test:mcp": "npm run test --workspace=mcp-harness",
+    "test:starter": "npm run test --workspace=starter-workspace",
     "scaffold": "node scaffolding-engine/bin/siteforge-scaffold.js",
+    "github:sync": "node github-engine/bin/siteforge-github-sync.js",
+    "deploy:vercel": "node vercel-pipeline/bin/siteforge-vercel-deploy.js",
     "mcp:tools": "node mcp-harness/bin/runner.js tools",
     "mcp:docs": "node mcp-harness/bin/runner.js docs",
     "mcp:standards": "node mcp-harness/bin/runner.js standards"

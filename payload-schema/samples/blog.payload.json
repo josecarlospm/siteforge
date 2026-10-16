@@ -1,0 +1,89 @@
+{
+  "version": "1.0.0",
+  "siteType": "blog",
+  "designPreset": "clean-editorial",
+  "theme": {
+    "topic": "Modern Software Engineering & Distributed Systems",
+    "name": "DevCraft Chronicles",
+    "tagline": "Deep-dives into Distributed Systems, Compilers, and Architecture",
+    "description": "An independent technical publication exploring large-scale systems engineering, database internals, and software design principles.",
+    "branding": {
+      "primaryColor": "#1C1917",
+      "secondaryColor": "#7F1D1D",
+      "fontHeading": "Playfair Display",
+      "fontBody": "Source Sans 3"
+    },
+    "content": {
+      "categories": [
+        "Distributed Systems",
+        "Database Engines",
+        "Frontend Architecture",
+        "Engineering Leadership"
+      ],
+      "posts": [
+        {
+          "id": "post-raft-consensus",
+          "title": "Understanding Raft Consensus in Practice: Beyond the Paper",
+          "slug": "understanding-raft-consensus-in-practice",
+          "author": {
+            "name": "Alex Mercer",
+            "role": "Principal Systems Engineer",
+            "bio": "Building reliable distributed databases and storage engines."
+          },
+          "category": "Distributed Systems",
+          "publishedAt": "2026-09-15T09:00:00Z",
+          "readingTime": "9 min read",
+          "summary": "A deep dive into leader election splits, log compaction edge cases, and network partition recovery in distributed state machines.",
+          "tags": ["raft", "consensus", "distributed-systems", "fault-tolerance"],
+          "featured": true
+        },
+        {
+          "id": "post-angular-signals",
+          "title": "Signals vs Observables: Fine-Grained Reactivity in Angular 19",
+          "slug": "signals-vs-observables-angular-reactivity",
+          "author": {
+            "name": "Sara Lin",
+            "role": "Frontend Architect",
+            "bio": "Specializing in Angular, compiler internals, and web performance."
+          },
+          "category": "Frontend Architecture",
+          "publishedAt": "2026-10-02T14:30:00Z",
+          "readingTime": "7 min read",
+          "summary": "How Angular 19 signals simplify dependency tracking, eliminate zone.js overhead, and achieve predictable component re-renders.",
+          "tags": ["angular", "signals", "reactivity", "performance"]
+        }
+      ],
+      "authors": [
+        {
+          "name": "Alex Mercer",
+          "role": "Principal Systems Engineer",
+          "bio": "Building reliable distributed databases and storage engines."
+        },
+        {
+          "name": "Sara Lin",
+          "role": "Frontend Architect",
+          "bio": "Specializing in Angular, compiler internals, and web performance."
+        }
+      ],
+      "featuredPostId": "post-raft-consensus",
+      "newsletterCta": {
+        "title": "Stay Ahead of Systems Architecture",
+        "description": "Join 25,000+ senior engineers receiving bi-weekly deep dives directly in their inbox.",
+        "buttonText": "Subscribe to Chronicles"
+      }
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "devcraft-chronicles-blog",
+      "owner": "jos3k4",
+      "isPrivate": false,
+      "autoInit": true,
+      "defaultBranch": "main"
+    },
+    "vercel": {
+      "projectName": "devcraft-chronicles",
+      "framework": "angular"
+    }
+  }
+}

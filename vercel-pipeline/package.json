@@ -1,0 +1,36 @@
+{
+  "name": "@siteforge/vercel-pipeline",
+  "version": "1.0.0",
+  "description": "Zero-Config Vercel Deployment Orchestration, Project Linking & Live URL Verification for SiteForge",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "siteforge-vercel-deploy": "bin/siteforge-vercel-deploy.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "deploy": "node bin/siteforge-vercel-deploy.js"
+  },
+  "keywords": [
+    "siteforge",
+    "vercel",
+    "deployment",
+    "angular",
+    "ci-cd",
+    "automation"
+  ],
+  "author": "Vercel Deployment Specialist",
+  "license": "MIT",
+  "dependencies": {
+    "@siteforge/payload-schema": "*",
+    "@siteforge/scaffolding-engine": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

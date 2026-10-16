@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "siteType": "social_media",
+  "designPreset": "modern-saas-dark",
+  "theme": {
+    "topic": "Botanical Enthusiasts & Plant Collectors Network",
+    "name": "FloraConnect",
+    "tagline": "The Social Network for Urban Gardeners and Rare Plant Enthusiasts",
+    "description": "Share progress photos, diagnose leaf pests with peer botanists, trade cuttings, and discover local plant swaps.",
+    "branding": {
+      "primaryColor": "#6366F1",
+      "secondaryColor": "#06B6D4",
+      "fontHeading": "Plus Jakarta Sans",
+      "fontBody": "Inter"
+    },
+    "content": {
+      "platformType": "community_hub",
+      "trendingTopics": [
+        "#AroidAcclimation",
+        "#SemiHydroponics",
+        "#MonsteraPropagation",
+        "#GrowLightSetups",
+        "#PestDefense"
+      ],
+      "feedPosts": [
+        {
+          "id": "post-semi-hydro-pon",
+          "author": {
+            "name": "Liam Vance",
+            "handle": "@liam_plants",
+            "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
+            "verified": true
+          },
+          "content": "Transitioned my Alocasia Frydek into Lechuza Pon 3 weeks ago. Root development is insane compared to standard soil mix! Check the water reservoir gauge below.",
+          "timestamp": "25m ago",
+          "likesCount": 142,
+          "repliesCount": 28,
+          "sharesCount": 12,
+          "tags": ["#SemiHydroponics", "#AlocasiaCare"],
+          "mediaUrl": "https://images.unsplash.com/photo-1545241047-6083a3684587"
+        },
+        {
+          "id": "post-monstera-leaf-fenestration",
+          "author": {
+            "name": "Chloe Martin",
+            "handle": "@greenchloe",
+            "avatarUrl": "https://images.unsplash.com/photo-1517841905240-472988babdf9",
+            "verified": false
+          },
+          "content": "My Thai Constellation just unfurled its first double fenestrated leaf! Pure botanical joy today.",
+          "timestamp": "2h ago",
+          "likesCount": 389,
+          "repliesCount": 45,
+          "sharesCount": 19,
+          "tags": ["#MonsteraPropagation", "#ThaiConstellation"]
+        }
+      ],
+      "channels": [
+        {
+          "id": "chan-aroid-lovers",
+          "name": "Aroid & Epiphyte Enthusiasts",
+          "membersCount": 8420,
+          "description": "Discussion and care logs for Monsteras, Philodendrons, and Anthuriums."
+        },
+        {
+          "id": "chan-plant-trading",
+          "name": "Cuttings & Plant Swap Hub",
+          "membersCount": 5190,
+          "description": "Verified swaps, regional trade meetups, and root cutting exchanges."
+        }
+      ],
+      "communityMetrics": [
+        { "label": "Active Gardeners", "value": "42,000+" },
+        { "label": "Plants Documented", "value": "180,000" },
+        { "label": "Daily Care Logs", "value": "12,500" }
+      ]
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "floraconnect-social-platform",
+      "owner": "jos3k4",
+      "isPrivate": false,
+      "autoInit": true
+    },
+    "vercel": {
+      "projectName": "floraconnect-social",
+      "framework": "angular"
+    }
+  }
+}

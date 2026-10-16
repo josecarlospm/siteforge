@@ -303,4 +303,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 `;
   }
+
+  static getVercelJson(projectName: string): string {
+    return JSON.stringify(
+      {
+        $schema: 'https://openapi.vercel.sh/vercel.json',
+        framework: 'angular',
+        buildCommand: 'npm run build',
+        outputDirectory: `dist/${projectName}/browser`,
+        cleanUrls: true,
+        routes: [
+          {
+            handle: 'filesystem',
+          },
+          {
+            src: '/(.*)',
+            dest: '/index.html',
+          },
+        ],
+      },
+      null,
+      2
+    );
+  }
 }

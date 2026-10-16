@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "siteType": "learning_platform",
+  "designPreset": "warm-organic",
+  "theme": {
+    "topic": "Indoor Houseplant Care",
+    "name": "PlantCare Academy",
+    "tagline": "Keep Your Indoor Jungle Thriving with Science-Backed Care",
+    "description": "Interactive masterclasses, watering diagnostics, lighting calculators.",
+    "content": {
+      "featuredCategories": ["Tropical"],
+      "courses": [
+        {
+          "id": "c1",
+          "title": "Monstera 101",
+          "instructor": "Dr. Vance",
+          "level": "Beginner",
+          "duration": "1h",
+          "lessonsCount": 3,
+          "rating": 5,
+          "studentsCount": 100,
+          "summary": "Overview",
+          "modules": [{ "title": "Intro", "duration": "10m" }]
+        }
+      ]
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "plantcare repo with invalid spaces and symbols!$"
+    },
+    "vercel": {
+      "projectName": "plantcare-web"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "siteType": "blog",
+  "designPreset": "synthwave-80s-neon",
+  "theme": {
+    "topic": "Retro Coding",
+    "name": "SynthCode",
+    "tagline": "Coding in neon and retro vibes",
+    "description": "A nostalgic look at 80s computing and demo scene culture.",
+    "content": {
+      "categories": ["Demoscene"],
+      "posts": [
+        {
+          "id": "post-1",
+          "title": "Amiga 500 Graphics",
+          "slug": "amiga-500-graphics",
+          "author": { "name": "Pixel King" },
+          "category": "Demoscene",
+          "publishedAt": "2026-01-01",
+          "readingTime": "5 min",
+          "summary": "Exploring copper lists and bitplanes.",
+          "tags": ["amiga"]
+        }
+      ]
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "synthcode-blog"
+    },
+    "vercel": {
+      "projectName": "synthcode-blog"
+    }
+  }
+}

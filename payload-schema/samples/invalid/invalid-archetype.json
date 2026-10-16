@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "siteType": "quantum_portal",
+  "designPreset": "warm-organic",
+  "theme": {
+    "topic": "Quantum Computing",
+    "name": "Qubits Daily",
+    "tagline": "Quantum algorithms made accessible",
+    "description": "Explorations into quantum gates, entanglement, and error correction.",
+    "content": {}
+  },
+  "integrations": {
+    "github": {
+      "repoName": "qubits-daily"
+    },
+    "vercel": {
+      "projectName": "qubits-daily"
+    }
+  }
+}

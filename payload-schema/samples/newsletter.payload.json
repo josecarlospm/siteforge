@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "siteType": "newsletter",
+  "designPreset": "neo-brutalist",
+  "theme": {
+    "topic": "Autonomous AI Engineering & Agentic Workflows",
+    "name": "Agentic Frontier",
+    "tagline": "Weekly Intelligence on Autonomous Systems and Agent Workflows",
+    "description": "Curated field reports, prompt engineering patterns, multi-agent frameworks, and production post-mortems for AI builders.",
+    "branding": {
+      "primaryColor": "#FFE600",
+      "secondaryColor": "#000000",
+      "fontHeading": "Space Grotesk",
+      "fontBody": "Inter"
+    },
+    "content": {
+      "cadence": "Every Thursday morning at 09:00 UTC",
+      "subscriberCount": "18,400+ builders",
+      "leadIn": "No fluff. Just concrete agent architectures, verifiable benchmarks, and open-source recipes delivered weekly.",
+      "perks": [
+        "Exclusive breakdown of multi-agent orchestration architectures",
+        "Benchmark datasets for tool use and context compaction",
+        "Discounts on workshops and agent testing tooling",
+        "Direct access to monthly AMA sessions with leading researchers"
+      ],
+      "editions": [
+        {
+          "issueNumber": 42,
+          "title": "Issue #42: Dynamic Memory Systems and Vector Context Windows",
+          "publishedAt": "2026-10-08",
+          "summary": "Why static RAG fails long-horizon tasks and how episodic memory consolidation bridges the gap.",
+          "highlights": [
+            "Episodic memory graphs vs flat vector stores",
+            "Benchmarking subagent coordination latency",
+            "3 open-source libraries worth starring this week"
+          ],
+          "readUrl": "https://agenticfrontier.io/issues/42"
+        },
+        {
+          "issueNumber": 41,
+          "title": "Issue #41: Autonomous Self-Healing Code Pipelines in Production",
+          "publishedAt": "2026-10-01",
+          "summary": "Case studies from engineering teams deploying agents to fix broken builds and triage regressions.",
+          "highlights": [
+            "Zero-human-in-the-loop merge criteria",
+            "Sandboxed test environments for untrusted code execution"
+          ]
+        }
+      ],
+      "testimonials": [
+        {
+          "quote": "The single most actionable AI newsletter in my inbox. The architecture diagrams alone are worth gold.",
+          "author": "Maya Patel",
+          "role": "VP Engineering, SynapseAI"
+        }
+      ],
+      "sampleIssue": {
+        "title": "Issue #40: Architectural Blueprints for Task-Specialized Swarms",
+        "snippet": "When decomposing monolithic agent prompts into specialized task squads, the communication protocol determines failure rates..."
+      }
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "agentic-frontier-newsletter",
+      "owner": "jos3k4",
+      "isPrivate": false,
+      "autoInit": true
+    },
+    "vercel": {
+      "projectName": "agentic-frontier",
+      "framework": "angular"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "siteType": "landing_page",
+  "designPreset": "corporate-enterprise",
+  "theme": {
+    "topic": "Autonomous Indoor Greenhouse & Commercial Hydroponics IoT",
+    "name": "SproutSaaS Enterprise",
+    "tagline": "Industrial IoT & Autonomous Climate Control for Precision Agriculture",
+    "description": "Enterprise-grade telemetry, automated nutrient dosing, and micro-climate analytics for commercial greenhouse operations.",
+    "branding": {
+      "primaryColor": "#0F172A",
+      "secondaryColor": "#2563EB",
+      "fontHeading": "Inter",
+      "fontBody": "Roboto"
+    },
+    "content": {
+      "hero": {
+        "headline": "Autonomous Micro-Climate Intelligence for Modern Agriculture",
+        "subheadline": "Monitor soil moisture, vapor pressure deficit, and nutrient conductivity across millions of square feet with zero manual calibration.",
+        "primaryCta": {
+          "label": "Schedule Technical Demo",
+          "href": "https://sproutsaas.io/demo"
+        },
+        "secondaryCta": {
+          "label": "View Sensor Specs",
+          "href": "https://sproutsaas.io/specs"
+        },
+        "mediaUrl": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae"
+      },
+      "features": [
+        {
+          "id": "feat-vpd-analytics",
+          "title": "Real-Time VPD & Canopy Telemetry",
+          "description": "Continuous monitoring of leaf surface temperature against ambient humidity to maintain optimal transpiration rates."
+        },
+        {
+          "id": "feat-autonomous-dosing",
+          "title": "Closed-Loop Nutrient Dosing",
+          "description": "Sub-milliliter precision EC and pH adjustment driven by predictive machine learning models."
+        },
+        {
+          "id": "feat-compliance",
+          "title": "GAP & USDA Regulatory Audit Trails",
+          "description": "Cryptographically verifiable sensor logs and batch tracking for global organic food certification."
+        }
+      ],
+      "socialProof": [
+        { "value": "14.2M sq ft", "label": "Canopy Monitored" },
+        { "value": "38%", "label": "Average Water Reduction" },
+        { "value": "99.99%", "label": "Sensor Network Uptime" }
+      ],
+      "pricingPlans": [
+        {
+          "id": "plan-growth",
+          "name": "Commercial Growth",
+          "price": "$499",
+          "billingPeriod": "per month / facility",
+          "features": [
+            "Up to 250 IoT sensor nodes",
+            "Continuous VPD & moisture alerting",
+            "REST API & Webhook streaming",
+            "Standard email & phone support"
+          ],
+          "ctaLabel": "Start 30-Day Evaluation"
+        },
+        {
+          "id": "plan-enterprise",
+          "name": "Industrial Fleet",
+          "price": "$1,499",
+          "billingPeriod": "per month / multi-site",
+          "features": [
+            "Unlimited sensor gateways",
+            "Sub-second telemetry sync",
+            "Custom ERP & SCADA integration",
+            "Dedicated solutions architect & 24/7 SLA"
+          ],
+          "isPopular": true,
+          "ctaLabel": "Contact Enterprise Sales"
+        }
+      ],
+      "testimonials": [
+        {
+          "quote": "SproutSaaS lowered our facility heating and irrigation costs by 32% within the first two quarters of deployment.",
+          "author": "David Chen",
+          "role": "Chief Agricultural Officer, VerdanTech Greens"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Does SproutSaaS integrate with existing Modbus / BACnet controllers?",
+          "answer": "Yes, our Edge Bridge supports Modbus RTU/TCP, BACnet, and LoRaWAN gateways natively."
+        }
+      ],
+      "ctaSection": {
+        "title": "Ready to Modernize Your Cultivation Infrastructure?",
+        "description": "Talk to an agricultural IoT specialist today to model energy savings for your facility.",
+        "buttonLabel": "Request Feasibility Assessment",
+        "buttonHref": "https://sproutsaas.io/assessment"
+      }
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "sproutsaas-enterprise-web",
+      "owner": "jos3k4",
+      "isPrivate": false,
+      "autoInit": true
+    },
+    "vercel": {
+      "projectName": "sproutsaas-enterprise",
+      "framework": "angular"
+    }
+  }
+}

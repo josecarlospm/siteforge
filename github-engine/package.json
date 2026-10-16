@@ -1,0 +1,36 @@
+{
+  "name": "@siteforge/github-engine",
+  "version": "1.0.0",
+  "description": "Autonomous GitHub Provisioning, Git Sync & Repository Orchestration Engine for SiteForge",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "siteforge-github-sync": "bin/siteforge-github-sync.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "sync": "node bin/siteforge-github-sync.js"
+  },
+  "keywords": [
+    "siteforge",
+    "github",
+    "git",
+    "repository-provisioning",
+    "angular",
+    "automation"
+  ],
+  "author": "SiteForge Backend Architect",
+  "license": "MIT",
+  "dependencies": {
+    "@siteforge/payload-schema": "*",
+    "@siteforge/scaffolding-engine": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

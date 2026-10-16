@@ -1,0 +1,106 @@
+{
+  "version": "1.0.0",
+  "siteType": "ecommerce",
+  "designPreset": "warm-organic",
+  "theme": {
+    "topic": "Rare Botanicals & Exotic Houseplants",
+    "name": "Botanica Rare Plants",
+    "tagline": "Acclimate and Nurture the World's Rarest Aroids and Tropicals",
+    "description": "Ethically propagated variegated monsteras, anthuriums, and philodendrons delivered sustainably to your door.",
+    "branding": {
+      "primaryColor": "#2D5A27",
+      "secondaryColor": "#C86D51",
+      "fontHeading": "Fraunces",
+      "fontBody": "Plus Jakarta Sans"
+    },
+    "content": {
+      "currency": "EUR",
+      "currencySymbol": "€",
+      "collections": [
+        "Variegated Monstera",
+        "Velvet Anthuriums",
+        "Climbing Philodendrons",
+        "Substrates & Moss Poles"
+      ],
+      "products": [
+        {
+          "id": "prod-monstera-thai-constellation",
+          "name": "Monstera Deliciosa 'Thai Constellation'",
+          "slug": "monstera-deliciosa-thai-constellation",
+          "price": 89.99,
+          "compareAtPrice": 119.99,
+          "collection": "Variegated Monstera",
+          "rating": 4.9,
+          "reviewsCount": 84,
+          "badge": "Top Seller",
+          "description": "Lab-propagated tissue culture specimen with stable starburst variegation and robust root system.",
+          "features": [
+            "Genetically stable sectoral variegation",
+            "Potted in custom airy aroid mix",
+            "Inspected phytosanitary certificate included"
+          ],
+          "inStock": true,
+          "images": [
+            "https://images.unsplash.com/photo-1614594975525-e45190c55d0b"
+          ],
+          "sku": "BOT-MTC-01"
+        },
+        {
+          "id": "prod-anthurium-clarinervium",
+          "name": "Anthurium Clarinervium Velvet",
+          "slug": "anthurium-clarinervium-velvet",
+          "price": 54.5,
+          "collection": "Velvet Anthuriums",
+          "rating": 4.8,
+          "reviewsCount": 42,
+          "badge": "Rare",
+          "description": "Heart-shaped dark emerald leaves with luminous white crystalline venation.",
+          "features": [
+            "Velvety texture foliage",
+            "Thrives in 60%+ ambient humidity",
+            "14cm nursery pot with sphagnum layer"
+          ],
+          "inStock": true,
+          "images": [
+            "https://images.unsplash.com/photo-1545241047-6083a3684587"
+          ],
+          "sku": "BOT-ACV-02"
+        }
+      ],
+      "shippingHighlights": [
+        {
+          "title": "Climate-Controlled Packaging",
+          "description": "Insulated thermal boxes with 72-hour heat packs during cold seasons."
+        },
+        {
+          "title": "Arrive Alive Guarantee",
+          "description": "30-day health guarantee and complimentary horticultural consultation."
+        }
+      ],
+      "promotionalBanner": {
+        "headline": "Spring Aroid Release: 15% off orders over €100",
+        "code": "GROWGREEN15",
+        "discount": "15%"
+      },
+      "reviews": [
+        {
+          "quote": "The Thai Constellation arrived with zero damage and three new leaves emerged within a month!",
+          "author": "Isabelle Fontaine",
+          "role": "Verified Collector, Lyon"
+        }
+      ]
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "botanica-rare-plants-store",
+      "owner": "jos3k4",
+      "isPrivate": false,
+      "autoInit": true
+    },
+    "vercel": {
+      "projectName": "botanica-plants-store",
+      "framework": "angular"
+    }
+  }
+}
