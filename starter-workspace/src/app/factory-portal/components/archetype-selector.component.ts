@@ -1,127 +1,94 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FactoryStateService } from '../services/factory-state.service';
 import { ARCHETYPES, FactorySiteType } from '../models/factory.model';
 
 @Component({
   selector: 'sf-archetype-selector',
-  standalone: true,
-  imports: [CommonModule],
   template: `
-    <section class="archetype-section">
+    <section class="archetype-section" aria-labelledby="archetype-heading">
       <div class="section-header">
-        <h3 class="section-title">1. Website Archetype</h3>
-        <span class="section-subtitle">Select from 6 production-grade web application architectures</span>
+        <h2 class="section-title" id="archetype-heading">Website archetype</h2>
+        <p class="section-subtitle">
+          Maps to API <code>siteType</code> — six supported architectures
+        </p>
       </div>
 
-      <div class="archetype-grid">
+      <div class="archetype-row" role="listbox" aria-label="Website archetypes">
         @for (arch of archetypes; track arch.type) {
-          <div
-            class="archetype-card"
+          <button
+            type="button"
+            class="archetype-option"
+            role="option"
+            [attr.aria-selected]="selectedType() === arch.type"
             [class.selected]="selectedType() === arch.type"
             (click)="selectType(arch.type)"
           >
-            <div class="card-top">
-              <span class="arch-icon">{{ arch.icon }}</span>
-              <span class="sf-badge" [class.sf-badge-primary]="selectedType() === arch.type">
-                {{ arch.badge }}
-              </span>
-            </div>
-
-            <h4 class="arch-title">{{ arch.title }}</h4>
-            <p class="arch-desc">{{ arch.description }}</p>
-
-            <ul class="arch-features">
-              @for (feat of arch.features; track feat) {
-                <li><span class="check">✓</span> {{ feat }}</li>
-              }
-            </ul>
-          </div>
+            <span class="arch-title">{{ arch.title }}</span>
+            <code class="arch-api">{{ arch.label }}</code>
+            <span class="arch-desc">{{ arch.description }}</span>
+          </button>
         }
       </div>
     </section>
   `,
   styles: [`
-    .archetype-section {
-      margin-bottom: var(--spacing-8, 32px);
-    }
     .section-header {
-      margin-bottom: var(--spacing-4, 16px);
+      margin-bottom: var(--spacing-5, 20px);
     }
     .section-title {
-      font-size: var(--text-lg, 1.125rem);
-      font-weight: 700;
+      font-size: var(--text-xl, 1.25rem);
+      font-weight: 600;
       color: var(--color-text-main);
+      margin-bottom: var(--spacing-1, 4px);
     }
     .section-subtitle {
       font-size: var(--text-sm, 0.875rem);
       color: var(--color-text-muted);
     }
-    .archetype-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: var(--spacing-4, 16px);
+    .section-subtitle code {
+      font-family: var(--font-mono);
+      font-size: 0.8em;
+      color: var(--color-accent);
     }
-    .archetype-card {
+    .archetype-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--spacing-3, 12px);
+    }
+    .archetype-option {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: var(--spacing-4, 16px);
+      text-align: left;
       background: var(--color-surface);
       border: var(--border-width) solid var(--color-border);
       border-radius: var(--radius-card);
-      padding: var(--spacing-5, 20px);
+      color: var(--color-text-main);
       cursor: pointer;
-      transition: all var(--transition-fast, 150ms ease);
-      display: flex;
-      flex-direction: column;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
     }
-    .archetype-card:hover {
+    .archetype-option:hover {
+      border-color: var(--color-secondary);
+    }
+    .archetype-option.selected {
       border-color: var(--color-primary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-card);
-    }
-    .archetype-card.selected {
-      border-color: var(--color-primary);
-      background-color: var(--color-surface);
-      box-shadow: 0 0 0 2px var(--color-primary), var(--shadow-card);
-    }
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--spacing-3, 12px);
-    }
-    .arch-icon {
-      font-size: 1.75rem;
+      background: var(--color-surface-muted);
     }
     .arch-title {
-      font-size: var(--text-base, 1rem);
-      font-weight: 700;
-      margin-bottom: var(--spacing-2, 8px);
-      color: var(--color-text-main);
+      font-weight: 650;
+      font-size: var(--text-sm, 0.875rem);
+    }
+    .arch-api {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--color-accent);
     }
     .arch-desc {
       font-size: var(--text-xs, 0.75rem);
       color: var(--color-text-muted);
-      line-height: 1.4;
-      margin-bottom: var(--spacing-4, 16px);
-      flex: 1;
-    }
-    .arch-features {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      border-top: 1px dashed var(--color-border);
-      padding-top: var(--spacing-3, 12px);
-    }
-    .arch-features li {
-      font-size: var(--text-xs, 0.75rem);
-      color: var(--color-text-muted);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .check {
-      color: var(--color-primary);
-      font-weight: 700;
+      line-height: 1.35;
     }
   `],
 })

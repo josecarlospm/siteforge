@@ -9,60 +9,46 @@ export type FactorySiteType =
 export interface ArchetypeDefinition {
   type: FactorySiteType;
   title: string;
-  badge: string;
-  icon: string;
+  label: string;
   description: string;
-  features: string[];
 }
 
 export const ARCHETYPES: ArchetypeDefinition[] = [
   {
     type: 'learning_platform',
-    title: 'E-Learning Portal',
-    badge: 'Flagship Reference',
-    icon: '🎓',
-    description: 'Course catalogs, interactive lessons, progress tracking, and expert instructors.',
-    features: ['Curriculum modules', 'Level badges', 'Student ratings', 'Video player stubs'],
+    title: 'Learning platform',
+    label: 'siteType: learning_platform',
+    description: 'Course catalogs, lessons, and progress tracking.',
   },
   {
     type: 'blog',
-    title: 'Editorial & Journal',
-    badge: 'Content Heavy',
-    icon: '✍️',
-    description: 'Articles, category filters, author bios, tags, and reading duration estimates.',
-    features: ['Category taxonomy', 'Reading time', 'Author signatures', 'Related stories'],
+    title: 'Blog',
+    label: 'siteType: blog',
+    description: 'Articles, categories, authors, and reading time.',
   },
   {
     type: 'newsletter',
-    title: 'Curated Digest',
-    badge: 'Audience Builder',
-    icon: '📬',
-    description: 'Publication landing, issue archives, subscriber counters, and lead capture.',
-    features: ['Archive browser', 'Issue counters', '1-Click signup', 'Publishing cadence'],
+    title: 'Newsletter',
+    label: 'siteType: newsletter',
+    description: 'Issue archives and subscriber capture.',
   },
   {
     type: 'ecommerce',
-    title: 'Digital Storefront',
-    badge: 'Commerce Ready',
-    icon: '🛍️',
-    description: 'Showcase collections, inventory badges, multi-currency pricing, and reviews.',
-    features: ['Product cards', 'Stock status', 'Currency switch', 'Feature bullets'],
+    title: 'Ecommerce',
+    label: 'siteType: ecommerce',
+    description: 'Collections, pricing, and product detail flows.',
   },
   {
     type: 'social_media',
-    title: 'Community Network',
-    badge: 'High Engagement',
-    icon: '💬',
-    description: 'Activity stream, trending hashtags, author handles, and reaction counters.',
-    features: ['Live feed', 'Trending hashtags', 'Interactions', 'Avatar badges'],
+    title: 'Social media',
+    label: 'siteType: social_media',
+    description: 'Feed, handles, and interaction surfaces.',
   },
   {
     type: 'landing_page',
-    title: 'Product Launchpad',
-    badge: 'Conversion Focused',
-    icon: '🚀',
-    description: 'High-impact hero banner, value proposition grid, social proof, and primary CTAs.',
-    features: ['Headline & tagline', 'Feature cards', 'Dual CTAs', 'Conversion sections'],
+    title: 'Landing page',
+    label: 'siteType: landing_page',
+    description: 'Hero, value proposition, and conversion CTAs.',
   },
 ];
 
