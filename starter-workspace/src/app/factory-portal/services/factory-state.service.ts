@@ -21,7 +21,7 @@ export class FactoryStateService {
   readonly primaryColor = signal<string>('#145C45');
   readonly secondaryColor = signal<string>('#2F8F6B');
   readonly githubRepo = signal<string>('plantcare-academy-web');
-  readonly vercelProject = signal<string>('plantcare-academy');
+  readonly vercelProject = signal<string>('plantcare-academy-web');
   readonly githubConnected = signal<boolean>(true);
   readonly vercelConnected = signal<boolean>(true);
 
@@ -204,7 +204,7 @@ export class FactoryStateService {
       this.tagline.set('Cultivate your indoor jungle with botanical masterclasses');
       this.description.set('Interactive watering diagnostics, lighting calculators, and masterclasses taught by experts.');
       this.githubRepo.set('plantcare-academy-web');
-      this.vercelProject.set('plantcare-academy');
+      this.vercelProject.set('plantcare-academy-web');
     } else if (siteType === 'ecommerce') {
       this.setPreset('modern-saas-dark');
       this.topic.set('Minimalist Mechanical Keyboards');

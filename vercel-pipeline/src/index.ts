@@ -5,5 +5,6 @@ export * from './config/vercel-config.js';
 export * from './config/env-manager.js';
 export * from './deployment/deployment-poller.js';
 export * from './deployment/deployment-trigger.js';
+export * from './deployment/live-url-resolver.js';
 export * from './deployment/metadata-collector.js';
 export * from './pipeline/vercel-pipeline.js';

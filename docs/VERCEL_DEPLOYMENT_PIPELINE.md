@@ -100,12 +100,18 @@ The `DeploymentPoller` and `MetadataCollector` monitor builds and verify live av
 2. **Exponential / Interval Polling**:
    * Default polling interval: 2,000ms.
    * Default timeout threshold: 180,000ms (3 minutes).
-3. **Live HTTPS Verification**:
-   * Performs an automated HTTP GET check against the deployed URL with exponential retry to confirm 2xx HTTP response and routing availability.
-4. **Canonical URL Hierarchy**:
-   * Primary: Production alias (e.g. `https://<projectName>.vercel.app`).
-   * Secondary: Assigned custom deployment alias.
-   * Fallback: Unique deployment host (`https://<deployment-host>.vercel.app`).
+3. **Live HTTPS Verification (public access)**:
+   * Performs an automated HTTP GET with `redirect: manual` against candidate URLs.
+   * Rejects Vercel Deployment Protection / SSO (`vercel.com/sso-api`), HTTP 401/403, and `DEPLOYMENT_NOT_FOUND` (404).
+   * Only a public HTTP 2xx response qualifies as a recorded production URL.
+4. **Canonical URL Hierarchy** (first *verified* candidate wins):
+   * Production project aliases from `targets.production.alias`.
+   * Deployment-assigned aliases.
+   * Unique deployment host (`https://<deployment-host>.vercel.app`).
+5. **No unverified fallback aliases**:
+   * If the token cannot create/link a project (`403`), the pipeline **fails** with an actionable error.
+   * It never records a synthetic `{projectName}.vercel.app` as `liveUrl` when the project was not actually provisioned.
+   * Owner setup steps: [`OWNER_GITHUB_VERCEL_CHECKLIST.md`](./OWNER_GITHUB_VERCEL_CHECKLIST.md).
 
 ---
 

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "SiteForge — The Autonomous Angular Web Factory",
   "private": true,
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26"
+  },
   "workspaces": [
     "payload-schema",
     "scaffolding-engine",
@@ -14,10 +17,11 @@
   ],
   "scripts": {
     "build": "npm run build --workspace=payload-schema && npm run build --workspace=scaffolding-engine && npm run build --workspace=github-engine && npm run build --workspace=vercel-pipeline && npm run build --workspace=factory-orchestrator && npm run build --workspace=mcp-harness && npm run build --workspace=starter-workspace",
+    "build:libs": "npm run build --workspace=payload-schema && npm run build --workspace=scaffolding-engine && npm run build --workspace=github-engine && npm run build --workspace=vercel-pipeline && npm run build --workspace=factory-orchestrator && npm run build --workspace=mcp-harness",
     "build:all": "npm run build",
     "build:vercel": "npm run build --workspace=vercel-pipeline",
     "build:orchestrator": "npm run build --workspace=factory-orchestrator",
-    "test": "npm run test --workspace=payload-schema && npm run test --workspace=scaffolding-engine && npm run test --workspace=github-engine && npm run test --workspace=vercel-pipeline && npm run test --workspace=factory-orchestrator && npm run test --workspace=mcp-harness && npm run test --workspace=starter-workspace",
+    "test": "npm run build:libs && npm run test --workspace=payload-schema && npm run test --workspace=scaffolding-engine && npm run test --workspace=github-engine && npm run test --workspace=vercel-pipeline && npm run test --workspace=factory-orchestrator && npm run test --workspace=mcp-harness && npm run test --workspace=starter-workspace",
     "test:all": "npm run test",
     "test:payload": "npm run test --workspace=payload-schema",
     "test:engine": "npm run test --workspace=scaffolding-engine",
