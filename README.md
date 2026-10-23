@@ -47,7 +47,7 @@ This repository contains the deliverables for **[SF-03] Angular 19+ Scaffolding 
 │   │   │   ├── core/        # ThemeService, PayloadService, models
 │   │   │   ├── layout/      # Header, Hero, ContentGrid, Card, Sidebar, Footer
 │   │   │   └── showcase/    # PlantCare Academy showcase view
-│   │   └── styles/          # design-tokens.css (all 5 Design.md presets)
+│   │   └── styles/          # design-tokens.css (all Design.md presets)
 │   └── dist/                # Production build artifacts
 │
 ├── scaffolding-engine/      # Scaffolding Engine & Design Token Compiler

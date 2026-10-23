@@ -16,7 +16,7 @@ describe('HealthMonitor', () => {
     expect(names.some((n) => n.includes('GitHub Integration'))).toBe(true);
     expect(names.some((n) => n.includes('Vercel Deployment'))).toBe(true);
 
-    expect(report.activePresets.length).toBe(5);
+    expect(report.activePresets.length).toBe(6);
     expect(report.supportedArchetypes.length).toBe(6);
     expect(report.recommendations.length).toBeGreaterThan(0);
   });

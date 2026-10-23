@@ -3,9 +3,8 @@
 Master specification for every SiteForge-generated site and the factory portal.
 Token compilers and Angular maps must stay in sync with this file.
 
-**Enum compatibility:** `designPreset` payload keys are unchanged
-(`warm-organic` · `neo-brutalist` · `clean-editorial` · `modern-saas-dark` · `corporate-enterprise`).
-Aesthetics were rewritten in place — no Backend enum migration required.
+**Enum keys:** `warm-organic` · `neo-brutalist` · `clean-editorial` · `modern-saas-dark` · `corporate-enterprise` · **`pulse-magazine`** (SF-13.1 / DRE-125).
+Token compilers and Angular maps must include every key listed here.
 
 ---
 
@@ -209,6 +208,51 @@ Compiled output lives as CSS custom properties on `:root[data-theme="<preset>"]`
 
 ---
 
+### 4.6 `pulse-magazine` — Pulse Wire *(tech-magazine kickstart / blog chrome)*
+
+**Fictional sample brand:** **Pulse Feed** — never “The Verge” or any real publisher name, logo, or wordmark.
+
+**Moodboard:** Late-night newsroom on a battery of matte-black monitors — near-black canvas, near-white ink, one electric chartreuse strike for live categories and CTAs, hot amber for breaking marks. Masthead wordmark owns chrome. Lead package owns the first viewport after masthead. Story river is a dense headline feed (timestamp + byline), not a card grid. Themed packages cluster stories under a package title. Sans display voice: tight, loud headlines — zero newspaper serif mastheads.
+
+**Tokens**
+
+| Token | Value |
+|---|---|
+| bg | `#0B0C0E` |
+| surface | `#14161A` |
+| surfaceMuted | `#1C1F26` |
+| textMain | `#F4F5F7` |
+| textMuted | `#8B919A` |
+| primary | `#C8FF2A` *(electric chartreuse — distinct from neo-brutalist `#FFE600`)* |
+| primaryHover | `#B8EF1A` |
+| secondary | `#7A8494` |
+| secondaryHover | `#636C7A` |
+| accent | `#FF6A1A` *(hot amber for breaking / featured marks)* |
+| accentHover | `#E55C12` |
+| border | `rgba(255, 255, 255, 0.12)` |
+| fontHeading | Archivo |
+| fontBody | Source Sans 3 |
+| fontMono | IBM Plex Mono |
+| borderWidth | `1px` |
+| radiusCard / btn | `2px` / `2px` |
+| shadows | Near-flat black lifts only; no neon glow |
+
+**Layout contract:** `docs/PULSE_MAGAZINE_LAYOUT_CONTRACT.md` (masthead → featured lead → story river → themed packages → minimal footer).
+
+**Use for:** tech magazine / blog kickstarts, dense editorial chrome on `siteType: blog`.
+**Avoid:** Verge yellow/IP, broadsheet hairline grids, cream+serif+terracotta, purple/indigo SaaS, card-grid story rivers, pill clusters, emoji logos.
+
+**Anti-slop verification (Design.md §2)**
+
+- [x] No cream / oat canvas + serif display + terracotta
+- [x] No purple-on-white or purple→indigo gradient SaaS
+- [x] No broadsheet hairline / Playfair-on-cream masthead
+- [x] Accent is chartreuse + hot amber on near-black — not Verge trademark chrome, not neo-brutalist yellow fields
+- [x] Sans display (Archivo) — not newspaper serif
+- [x] No pill CTAs (`radiusPill` = `2px`)
+
+---
+
 ## 5. Moodboard Briefs (one line each)
 
 | Preset | Direction |
@@ -218,6 +262,7 @@ Compiled output lives as CSS custom properties on `:root[data-theme="<preset>"]`
 | `clean-editorial` | Gallery wall catalog — cool paper, deep ink, vermillion print; quiet margins, no broadsheet. |
 | `modern-saas-dark` | Forge night bay — graphite, ember, brass telemetry; factory portal voice. |
 | `corporate-enterprise` | Swiss ledger — white, teal authority, brass accent; calm institutional structure. |
+| `pulse-magazine` | Pulse Wire newsroom — near-black, chartreuse strike, hot amber marks; masthead + lead + river. |
 
 ---
 
@@ -226,7 +271,8 @@ Compiled output lives as CSS custom properties on `:root[data-theme="<preset>"]`
 | Domain theme examples | Preferred preset |
 |---|---|
 | Home plants / outdoor learning | `warm-organic` |
-| Tech newsletter / magazine | `clean-editorial` |
+| Tech magazine / dense editorial blog | `pulse-magazine` |
+| Literary newsletter / quiet long-form | `clean-editorial` |
 | SiteForge factory portal / developer SaaS | `modern-saas-dark` |
 | Bold D2C / campaign landing | `neo-brutalist` |
 | B2B / enterprise / compliance | `corporate-enterprise` |

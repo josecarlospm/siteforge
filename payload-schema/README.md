@@ -18,7 +18,7 @@ flowchart TD
     P --> C4["4. Integrations (github, vercel)"]
 
     C1 --> S1["learning_platform | blog | newsletter | ecommerce | social_media | landing_page"]
-    C2 --> S2["neo-brutalist | clean-editorial | modern-saas-dark | warm-organic | corporate-enterprise"]
+    C2 --> S2["neo-brutalist | clean-editorial | modern-saas-dark | warm-organic | corporate-enterprise | pulse-magazine"]
     C3 --> S3["Branding tokens, domain copy & strongly typed entity collections"]
     C4 --> S4["GitHub repository setup & Vercel deployment params"]
 ```
@@ -36,11 +36,12 @@ flowchart TD
 - `landing_page`: Hero section with CTAs, feature grids, pricing tiers, FAQs, social proof.
 
 ### 1.2 `designPreset` (Design Tokens mapped to `Design.md`)
-- `neo-brutalist`: High contrast, 3px solid borders, hard drop shadows, punchy accents.
-- `clean-editorial`: Serif display headings, cream backgrounds, generous whitespace.
-- `modern-saas-dark`: Zinc/slate dark surfaces, indigo/cyan glowing accents, glassmorphic cards.
-- `warm-organic`: Natural oat/moss green/terracotta palette, pill container radii (*PlantCare flagship*).
-- `corporate-enterprise`: Clean navy/slate blue palette, structured data cards.
+- `neo-brutalist`: Signal Block — hard ink borders, electric yellow, teal secondary.
+- `clean-editorial`: Gallery Press — cool paper, deep ink, vermillion print.
+- `modern-saas-dark`: Forge Night — graphite, ember, brass (portal shell).
+- `warm-organic`: Greenhouse Lab — limestone + chlorophyll (*PlantCare flagship*).
+- `corporate-enterprise`: Ledger — white, teal authority, brass accent.
+- `pulse-magazine`: Pulse Wire — near-black newsroom, chartreuse + hot amber (Pulse Feed samples).
 
 ### 1.3 `theme` (Domain Entities & Brand Identity)
 - `topic`: Core subject matter (2–120 chars).

@@ -9,6 +9,7 @@ export const DESIGN_PRESETS = [
   'modern-saas-dark',
   'warm-organic',
   'corporate-enterprise',
+  'pulse-magazine',
 ] as const;
 
 export type DesignPreset = (typeof DESIGN_PRESETS)[number];

@@ -74,7 +74,7 @@ export class TokenCompiler {
   }
 
   /**
-   * Compiles all 5 presets into a single multi-theme stylesheet
+   * Compiles all Design.md presets into a single multi-theme stylesheet
    */
   static compileAllPresets(): string {
     const presets = Object.keys(PRESET_REGISTRY) as DesignPresetName[];

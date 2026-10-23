@@ -14,6 +14,7 @@ export const designPresetSchema = z.enum(
     'modern-saas-dark',
     'warm-organic',
     'corporate-enterprise',
+    'pulse-magazine',
   ] as const,
   {
     message: `Invalid designPreset. Must be one of: ${DESIGN_PRESETS.join(', ')}`,
