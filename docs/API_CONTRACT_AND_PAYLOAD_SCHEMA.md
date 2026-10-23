@@ -13,7 +13,7 @@ The SiteForge pipeline receives a JSON payload specifying the website characteri
 | - newsletter                 | - modern-saas-dark        | - Color Overrides            |
 | - ecommerce                  | - warm-organic            | - Content Entities & Seed    |
 | - social_media               | - corporate-enterprise    |   (Courses, Articles, etc.)  |
-| - landing_page               |                           |                              |
+| - landing_page               | - pulse-magazine          |                              |
 +------------------------------+---------------------------+------------------------------+
 | 4. INTEGRATIONS (github, vercel)                                                        |
 | - repository name, private/public, organization                                         |
@@ -29,7 +29,7 @@ The SiteForge pipeline receives a JSON payload specifying the website characteri
 |---|---|---|---|
 | `version` | `string` | `"1.0.0"` | Payload contract schema version |
 | `siteType` | `enum` | `learning_platform`, `blog`, `newsletter`, `ecommerce`, `social_media`, `landing_page` | High-level structural website archetype |
-| `designPreset` | `enum` | `neo-brutalist`, `clean-editorial`, `modern-saas-dark`, `warm-organic`, `corporate-enterprise` | Token preset defined in `Design.md` |
+| `designPreset` | `enum` | `neo-brutalist`, `clean-editorial`, `modern-saas-dark`, `warm-organic`, `corporate-enterprise`, `pulse-magazine` | Token preset defined in `Design.md` |
 | `theme.topic` | `string` | e.g. `"Indoor Houseplant Care"` | The core subject matter |
 | `theme.name` | `string` | e.g. `"PlantCare Academy"` | Brand / commercial site name |
 | `theme.tagline` | `string` | e.g. `"Master the art of indoor gardening"` | Marketing tagline |
@@ -76,7 +76,8 @@ The SiteForge pipeline receives a JSON payload specifying the website characteri
         "clean-editorial",
         "modern-saas-dark",
         "warm-organic",
-        "corporate-enterprise"
+        "corporate-enterprise",
+        "pulse-magazine"
       ]
     },
     "theme": {
@@ -134,3 +135,33 @@ The SiteForge pipeline receives a JSON payload specifying the website characteri
   }
 }
 ```
+
+---
+
+## 4. Design preset mapping (`pulse-magazine`)
+
+| Enum key | Display name | Preferred `siteType` | Notes |
+|---|---|---|---|
+| `pulse-magazine` | Pulse Wire | `blog` (v1) | Tech-magazine / dense editorial chrome. Layout: [`PULSE_MAGAZINE_LAYOUT_CONTRACT.md`](./PULSE_MAGAZINE_LAYOUT_CONTRACT.md). Tokens: `Design.md` §4.6. |
+
+Canonical sample: `payload-schema/samples/blog-pulse-magazine.payload.json`.
+
+```json
+{
+  "version": "1.0.0",
+  "siteType": "blog",
+  "designPreset": "pulse-magazine",
+  "theme": {
+    "topic": "Consumer Tech News & Gadgets",
+    "name": "Pulse Feed",
+    "tagline": "Live product launches, reviews, and the overnight signal",
+    "description": "A dense tech-magazine blog covering consumer electronics, AI gadgets, and breaking product news."
+  },
+  "integrations": {
+    "github": { "repoName": "pulse-feed-kickstart" },
+    "vercel": { "projectName": "pulse-feed-kickstart", "framework": "angular" }
+  }
+}
+```
+
+No new `siteType` is required in v1 — pair `pulse-magazine` with `blog`.

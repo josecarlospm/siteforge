@@ -42,6 +42,37 @@ describe('ProjectGenerator', () => {
     expect(res.errors.length).toBe(0);
   });
 
+  it('should accept pulse-magazine designPreset for blog archetype', () => {
+    const pulsePayload: SiteForgePayloadInput = {
+      ...validPayload,
+      siteType: 'blog',
+      designPreset: 'pulse-magazine',
+      theme: {
+        topic: 'Consumer Tech News & Gadgets',
+        name: 'Pulse Feed',
+        tagline: 'Live product launches, reviews, and the overnight signal',
+        description:
+          'A dense tech-magazine blog covering consumer electronics, AI gadgets, and breaking product news.',
+      },
+      integrations: {
+        github: { repoName: 'pulse-feed-kickstart' },
+        vercel: { projectName: 'pulse-feed-kickstart' },
+      },
+    };
+    const res = ProjectGenerator.validatePayload(pulsePayload);
+    expect(res.valid).toBe(true);
+    expect(res.errors.length).toBe(0);
+
+    const outDir = path.join(testOutputDir, 'pulse-feed');
+    const result = ProjectGenerator.generateProject(pulsePayload, outDir);
+    expect(result.success).toBe(true);
+    expect(result.designPreset).toBe('pulse-magazine');
+
+    const tokensCss = fs.readFileSync(path.join(outDir, 'src/design-tokens.css'), 'utf-8');
+    expect(tokensCss).toContain('--color-primary: #C8FF2A');
+    expect(tokensCss).toContain('--color-accent: #FF6A1A');
+  });
+
   it('should reject invalid payload missing required fields', () => {
     const invalid = { version: '2.0.0', siteType: 'invalid_type' };
     const res = ProjectGenerator.validatePayload(invalid);

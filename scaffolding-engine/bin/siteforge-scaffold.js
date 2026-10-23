@@ -28,7 +28,7 @@ Usage:
 Options:
   --payload   Path to valid SiteForge JSON payload file (required)
   --output    Target directory to scaffold project into (required)
-  --preset    Override designPreset (neo-brutalist, warm-organic, etc.)
+  --preset    Override designPreset (warm-organic, pulse-magazine, neo-brutalist, …)
   --help      Show this help message
 `);
   process.exit(0);

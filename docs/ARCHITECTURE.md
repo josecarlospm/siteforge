@@ -43,6 +43,7 @@ Canonical rules live in root `Design.md` (SF-09). Enum keys are stable; aestheti
 * `clean-editorial` *(Gallery Press)*: Cool gallery paper, Literata + Source Sans 3, vermillion print — not broadsheet.
 * `modern-saas-dark` *(Forge Night)*: Graphite + forge-ember + brass for SiteForge portal — no indigo glow.
 * `corporate-enterprise` *(Ledger)*: Swiss institutional white, teal authority, brass accent — not generic `#2563EB` + Inter.
+* `pulse-magazine` *(Pulse Wire)*: Near-black newsroom, chartreuse + hot amber for tech-magazine blogs (`siteType: blog`) — see SF-13 / DRE-124.
 
 ### 3.3 Pillar 3: Theme & Domain Seed (`theme`)
 Defines the domain entity model, semantic copy, and asset bindings.

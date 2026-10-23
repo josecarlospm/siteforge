@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "siteType": "blog",
+  "designPreset": "pulse-magazine",
+  "theme": {
+    "topic": "Consumer Tech News & Gadgets",
+    "name": "Pulse Feed",
+    "tagline": "Live product launches, reviews, and the overnight signal",
+    "description": "A dense tech-magazine blog covering consumer electronics, AI gadgets, breaking product news, and overnight launches — masthead, featured lead, and story river chrome.",
+    "branding": {
+      "primaryColor": "#C8FF2A",
+      "secondaryColor": "#FF6A1A",
+      "fontHeading": "Archivo",
+      "fontBody": "Source Sans 3"
+    },
+    "content": {
+      "categories": [
+        "Gadgets",
+        "AI Hardware",
+        "Mobile",
+        "Streaming",
+        "Policy"
+      ],
+      "posts": [
+        {
+          "id": "post-foldable-battery",
+          "title": "The foldable battery claim that doesn’t survive a weekend charge cycle",
+          "slug": "foldable-battery-claim-weekend-cycle",
+          "author": {
+            "name": "Jordan Vale",
+            "role": "Hardware Editor",
+            "bio": "Teardown notes and battery lab reports for consumer devices."
+          },
+          "category": "Gadgets",
+          "publishedAt": "2026-10-22T06:15:00Z",
+          "readingTime": "6 min read",
+          "summary": "Lab notes on a viral foldable claim: capacity math, thermal throttling, and what the overnight drain curve actually shows.",
+          "tags": ["foldables", "batteries", "teardown", "gadgets"],
+          "featured": true
+        },
+        {
+          "id": "post-on-device-whisper",
+          "title": "On-device whisper models are shipping in midrange phones first",
+          "slug": "on-device-whisper-midrange-phones",
+          "author": {
+            "name": "Sam Okonkwo",
+            "role": "AI Reporter",
+            "bio": "Edge inference, silicon roadmaps, and the product claims that stick."
+          },
+          "category": "AI Hardware",
+          "publishedAt": "2026-10-21T18:40:00Z",
+          "readingTime": "5 min read",
+          "summary": "Why midrange SKUs are getting local speech models before flagships — NPU quotas, carrier demos, and the latency bar that matters.",
+          "tags": ["ai", "edge", "mobile", "speech"]
+        },
+        {
+          "id": "post-streaming-bitrate",
+          "title": "Streaming apps quietly raised bitrate floors again",
+          "slug": "streaming-bitrate-floors-again",
+          "author": {
+            "name": "Riley Chen",
+            "role": "Media Desk",
+            "bio": "Codec wars, CDN economics, and living-room UX."
+          },
+          "category": "Streaming",
+          "publishedAt": "2026-10-20T12:05:00Z",
+          "readingTime": "4 min read",
+          "summary": "A quiet floor bump across three apps changes home Wi‑Fi assumptions — and what “HD” means on a congested evening.",
+          "tags": ["streaming", "bandwidth", "codecs"]
+        }
+      ],
+      "authors": [
+        {
+          "name": "Jordan Vale",
+          "role": "Hardware Editor",
+          "bio": "Teardown notes and battery lab reports for consumer devices."
+        },
+        {
+          "name": "Sam Okonkwo",
+          "role": "AI Reporter",
+          "bio": "Edge inference, silicon roadmaps, and the product claims that stick."
+        },
+        {
+          "name": "Riley Chen",
+          "role": "Media Desk",
+          "bio": "Codec wars, CDN economics, and living-room UX."
+        }
+      ],
+      "featuredPostId": "post-foldable-battery",
+      "newsletterCta": {
+        "title": "Get the overnight signal",
+        "description": "One brief each morning: launches that shipped, claims that failed, and the three stories worth your first coffee.",
+        "buttonText": "Subscribe to Pulse"
+      }
+    }
+  },
+  "integrations": {
+    "github": {
+      "repoName": "pulse-feed-kickstart",
+      "owner": "josecarlospm",
+      "isPrivate": false,
+      "autoInit": true,
+      "defaultBranch": "main"
+    },
+    "vercel": {
+      "projectName": "pulse-feed-kickstart",
+      "framework": "angular"
+    }
+  }
+}
