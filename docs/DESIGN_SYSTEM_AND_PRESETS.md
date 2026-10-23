@@ -15,7 +15,8 @@ This file is a short index for docs navigation. Do not diverge token values from
 | `corporate-enterprise` | Ledger | B2B / enterprise |
 | `pulse-magazine` | Pulse Wire | Tech-magazine / dense editorial blog (Pulse Feed samples) |
 
-Layout contract for `pulse-magazine`: [`PULSE_MAGAZINE_LAYOUT_CONTRACT.md`](./PULSE_MAGAZINE_LAYOUT_CONTRACT.md).
+Layout contract for `pulse-magazine`: [`PULSE_MAGAZINE_LAYOUT_CONTRACT.md`](./PULSE_MAGAZINE_LAYOUT_CONTRACT.md).  
+Kickstart repo (DRE-124): [josecarlospm/pulse-feed-kickstart](https://github.com/josecarlospm/pulse-feed-kickstart).
 
 ## Anti-slop (summary)
 

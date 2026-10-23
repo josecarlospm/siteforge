@@ -91,3 +91,9 @@ No bounce spam, no neon glow pulses.
 
 Load only via `data-theme="pulse-magazine"` CSS variables from Design.md §4.6.  
 Hard bans (Design.md §2): cream+serif+terracotta, purple SaaS, broadsheet hairlines, Verge IP.
+
+---
+
+## Stage 2 kickstart (DRE-124 / SF-13.2)
+
+Runnable Angular sample: **[josecarlospm/pulse-feed-kickstart](https://github.com/josecarlospm/pulse-feed-kickstart)** — clone for agents; not the factory monorepo.
