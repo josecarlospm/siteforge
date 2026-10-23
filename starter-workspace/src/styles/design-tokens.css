@@ -232,3 +232,37 @@
   --shadow-button: 0 1px 3px rgba(13, 92, 99, 0.20);
   --backdrop-blur: 0px;
 }
+
+/* 6. pulse-magazine — Pulse Wire (tech-magazine kickstart) */
+:root[data-theme="pulse-magazine"] {
+  --color-bg: #0B0C0E;
+  --color-surface: #14161A;
+  --color-surface-muted: #1C1F26;
+  --color-text-main: #F4F5F7;
+  --color-text-muted: #8B919A;
+  --color-primary: #C8FF2A;
+  --color-primary-hover: #B8EF1A;
+  --color-secondary: #7A8494;
+  --color-secondary-hover: #636C7A;
+  --color-accent: #FF6A1A;
+  --color-accent-hover: #E55C12;
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  --font-heading: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --border-width: 1px;
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-pill: 2px;
+  --radius-card: 2px;
+  --radius-btn: 2px;
+
+  --shadow-flat: none;
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-ambient: 0 1px 4px rgba(0, 0, 0, 0.35);
+  --shadow-button: 0 2px 8px rgba(200, 255, 42, 0.22);
+  --backdrop-blur: 0px;
+}

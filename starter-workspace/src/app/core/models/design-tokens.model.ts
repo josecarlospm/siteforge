@@ -3,7 +3,8 @@ export type DesignPresetName =
   | 'neo-brutalist'
   | 'clean-editorial'
   | 'modern-saas-dark'
-  | 'corporate-enterprise';
+  | 'corporate-enterprise'
+  | 'pulse-magazine';
 
 export interface DesignTokens {
   name: DesignPresetName;
@@ -221,6 +222,42 @@ export const DESIGN_PRESETS: Record<DesignPresetName, DesignTokens> = {
       shadowCard: '0 2px 8px rgba(10, 22, 40, 0.06)',
       shadowAmbient: '0 1px 2px rgba(10, 22, 40, 0.04)',
       shadowButton: '0 1px 3px rgba(13, 92, 99, 0.20)',
+    },
+  },
+  'pulse-magazine': {
+    name: 'pulse-magazine',
+    displayName: 'Pulse Wire',
+    description:
+      'Near-black newsroom, electric chartreuse strike, hot amber marks — tech-magazine chrome for Pulse Feed samples',
+    colors: {
+      bg: '#0B0C0E',
+      surface: '#14161A',
+      surfaceMuted: '#1C1F26',
+      textMain: '#F4F5F7',
+      textMuted: '#8B919A',
+      primary: '#C8FF2A',
+      primaryHover: '#B8EF1A',
+      secondary: '#7A8494',
+      secondaryHover: '#636C7A',
+      accent: '#FF6A1A',
+      accentHover: '#E55C12',
+      border: 'rgba(255, 255, 255, 0.12)',
+    },
+    typography: {
+      fontHeading: "'Archivo', system-ui, sans-serif",
+      fontBody: "'Source Sans 3', system-ui, sans-serif",
+      fontMono: "'IBM Plex Mono', ui-monospace, monospace",
+    },
+    shape: {
+      borderWidth: '1px',
+      radiusCard: '2px',
+      radiusBtn: '2px',
+      radiusPill: '2px',
+    },
+    elevation: {
+      shadowCard: '0 4px 16px rgba(0, 0, 0, 0.45)',
+      shadowAmbient: '0 1px 4px rgba(0, 0, 0, 0.35)',
+      shadowButton: '0 2px 8px rgba(200, 255, 42, 0.22)',
     },
   },
 };

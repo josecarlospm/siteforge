@@ -134,7 +134,7 @@ describe('SiteForge Self-Serve Web Factory Portal', () => {
 
     const brand = compiled.querySelector('.hero-brand');
     expect(brand?.textContent?.trim()).toBe('SiteForge');
-    expect(compiled.querySelectorAll('.preset-preview').length).toBe(5);
+    expect(compiled.querySelectorAll('.preset-preview').length).toBe(6);
     expect(compiled.textContent).toContain('designPreset');
   });
 });

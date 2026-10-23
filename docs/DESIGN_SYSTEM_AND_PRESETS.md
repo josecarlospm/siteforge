@@ -1,6 +1,6 @@
 # Design System & Presets
 
-Canonical specification: **[`../Design.md`](../Design.md)** (SF-09 rewrite).
+Canonical specification: **[`../Design.md`](../Design.md)** (SF-09 rewrite + SF-13.1 `pulse-magazine`).
 
 This file is a short index for docs navigation. Do not diverge token values from `Design.md`.
 
@@ -10,11 +10,12 @@ This file is a short index for docs navigation. Do not diverge token values from
 |---|---|---|
 | `warm-organic` | Greenhouse Lab | Botanical / PlantCare learning flagship |
 | `neo-brutalist` | Signal Block | High-energy campaign / poster |
-| `clean-editorial` | Gallery Press | Blog / newsletter / long-form |
+| `clean-editorial` | Gallery Press | Literary blog / quiet newsletter / long-form |
 | `modern-saas-dark` | Forge Night | SiteForge factory portal / dark product |
 | `corporate-enterprise` | Ledger | B2B / enterprise |
+| `pulse-magazine` | Pulse Wire | Tech-magazine / dense editorial blog (Pulse Feed samples) |
 
-**No Backend enum migration** — keys unchanged; aesthetics reinvented in place.
+Layout contract for `pulse-magazine`: [`PULSE_MAGAZINE_LAYOUT_CONTRACT.md`](./PULSE_MAGAZINE_LAYOUT_CONTRACT.md).
 
 ## Anti-slop (summary)
 

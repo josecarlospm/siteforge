@@ -46,7 +46,20 @@ describe('TokenCompiler', () => {
     expect(css).toContain("'CustomSerif'");
   });
 
-  it('should compile all 5 presets into a unified stylesheet', () => {
+  it('should compile pulse-magazine (Pulse Wire) without Verge yellow or purple SaaS', () => {
+    const css = TokenCompiler.compilePresetToCss('pulse-magazine');
+    expect(css).toContain('--color-bg: #0B0C0E;');
+    expect(css).toContain('--color-primary: #C8FF2A;');
+    expect(css).toContain('--color-accent: #FF6A1A;');
+    expect(css).toContain('--radius-card: 2px;');
+    expect(css).toContain("'Archivo'");
+    expect(css).not.toContain('#FFE600');
+    expect(css).not.toContain('#6366F1');
+    expect(css).not.toContain('#F4F1EA');
+    expect(css).not.toContain('Playfair');
+  });
+
+  it('should compile all 6 presets into a unified stylesheet', () => {
     const allCss = TokenCompiler.compileAllPresets();
     const presets: DesignPresetName[] = [
       'warm-organic',
@@ -54,6 +67,7 @@ describe('TokenCompiler', () => {
       'clean-editorial',
       'modern-saas-dark',
       'corporate-enterprise',
+      'pulse-magazine',
     ];
     for (const preset of presets) {
       expect(allCss).toContain(`data-theme="${preset}"`);
@@ -67,5 +81,6 @@ describe('TokenCompiler', () => {
     expect(PRESET_REGISTRY['clean-editorial'].displayName).toBe('Gallery Press');
     expect(PRESET_REGISTRY['corporate-enterprise'].displayName).toBe('Ledger');
     expect(PRESET_REGISTRY['neo-brutalist'].displayName).toBe('Signal Block');
+    expect(PRESET_REGISTRY['pulse-magazine'].displayName).toBe('Pulse Wire');
   });
 });

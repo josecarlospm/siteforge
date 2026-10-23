@@ -50,12 +50,18 @@ describe('SiteForge Starter Workspace', () => {
     themeService.setPreset('corporate-enterprise');
     expect(themeService.currentPreset()).toBe('corporate-enterprise');
     expect(themeService.currentTokens().colors.primary).toBe('#0D5C63');
+
+    themeService.setPreset('pulse-magazine');
+    expect(themeService.currentPreset()).toBe('pulse-magazine');
+    expect(themeService.currentTokens().displayName).toBe('Pulse Wire');
+    expect(themeService.currentTokens().colors.primary).toBe('#C8FF2A');
+    expect(themeService.currentTokens().colors.accent).toBe('#FF6A1A');
   });
 
-  it('should manage 5 predefined Design.md presets', () => {
+  it('should manage 6 predefined Design.md presets', () => {
     const themeService = TestBed.inject(ThemeService);
     const presets = themeService.allPresets();
-    expect(presets.length).toBe(5);
+    expect(presets.length).toBe(6);
 
     const presetNames: DesignPresetName[] = [
       'warm-organic',
@@ -63,6 +69,7 @@ describe('SiteForge Starter Workspace', () => {
       'clean-editorial',
       'modern-saas-dark',
       'corporate-enterprise',
+      'pulse-magazine',
     ];
 
     for (const name of presetNames) {

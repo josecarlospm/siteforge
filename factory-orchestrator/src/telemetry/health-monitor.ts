@@ -65,7 +65,7 @@ export class HealthMonitor {
         name: 'Scaffolding Engine (@siteforge/scaffolding-engine)',
         status: hasTokens ? 'HEALTHY' : 'DEGRADED',
         version: '1.0.0',
-        details: `Design.md Token Compiler operational; 5 presets verified (${Object.keys(PRESET_REGISTRY).length} loaded)`,
+        details: `Design.md Token Compiler operational; ${Object.keys(PRESET_REGISTRY).length} presets verified`,
         latencyMs: Date.now() - scaffoldStart,
       });
     } catch (err: any) {
@@ -156,6 +156,7 @@ export class HealthMonitor {
         'clean-editorial',
         'modern-saas-dark',
         'corporate-enterprise',
+        'pulse-magazine',
       ],
       supportedArchetypes: [
         'learning_platform',
