@@ -41,6 +41,22 @@ describe('SiteForge Validation Functions', () => {
     }
   });
 
+  it('validatePayload accepts blog + pulse-magazine sample', () => {
+    const raw = fs.readFileSync(
+      path.resolve(process.cwd(), 'samples/blog-pulse-magazine.payload.json'),
+      'utf-8'
+    );
+    const payload = JSON.parse(raw);
+
+    const result = validatePayload(payload);
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.designPreset).toBe('pulse-magazine');
+      expect(result.data.siteType).toBe('blog');
+      expect(result.data.theme.name).toBe('Pulse Feed');
+    }
+  });
+
   it('validateGenericPayload allows valid payload with generic content', () => {
     const genericPayload = {
       version: '1.0.0',

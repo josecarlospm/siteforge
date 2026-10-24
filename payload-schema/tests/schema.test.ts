@@ -43,6 +43,24 @@ describe('Canonical JSON Schema (Draft 2020-12)', () => {
     });
   }
 
+  it('validates blog + pulse-magazine sample (SF-13.3 / DRE-127)', () => {
+    const filePath = path.resolve(process.cwd(), 'samples/blog-pulse-magazine.payload.json');
+    const payload = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+    expect(payload.siteType).toBe('blog');
+    expect(payload.designPreset).toBe('pulse-magazine');
+
+    const isValid = validate(payload);
+    if (!isValid) {
+      console.error('Validation errors for blog-pulse-magazine:', validate.errors);
+    }
+    expect(isValid).toBe(true);
+    expect(validate.errors).toBeNull();
+
+    const schema = getJsonSchema() as { properties: { designPreset: { enum: string[] } } };
+    expect(schema.properties.designPreset.enum).toContain('pulse-magazine');
+  });
+
   describe('Invalid Payloads & Edge Cases', () => {
     it('rejects payload missing required top-level fields', () => {
       const filePath = path.resolve(process.cwd(), 'samples/invalid/missing-required.json');

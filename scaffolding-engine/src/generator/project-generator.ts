@@ -3,7 +3,7 @@ import * as path from 'path';
 import { TokenCompiler } from '../compiler/token-compiler.js';
 import { ArchetypeTemplates, SiteType } from '../templates/archetype-templates.js';
 import { WorkspaceTemplates } from '../templates/workspace-templates.js';
-import { DesignPresetName } from '../presets/design-presets.js';
+import { DesignPresetName, PRESET_REGISTRY } from '../presets/design-presets.js';
 
 export interface SiteForgePayloadInput {
   version: '1.0.0';
@@ -69,13 +69,7 @@ export class ProjectGenerator {
       errors.push(`siteType must be one of: ${validSiteTypes.join(', ')}`);
     }
 
-    const validPresets: DesignPresetName[] = [
-      'warm-organic',
-      'neo-brutalist',
-      'clean-editorial',
-      'modern-saas-dark',
-      'corporate-enterprise',
-    ];
+    const validPresets = Object.keys(PRESET_REGISTRY) as DesignPresetName[];
     if (!validPresets.includes(p['designPreset'] as DesignPresetName)) {
       errors.push(`designPreset must be one of: ${validPresets.join(', ')}`);
     }
